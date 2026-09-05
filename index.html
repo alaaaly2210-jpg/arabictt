@@ -3,890 +3,2046 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>منصة العربي التعليمية – الإبريز اللغوي</title>
-    
-    <!-- Google Fonts: Amiri -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tailwind CSS CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        tier: {
-                            accent: '#0D9488',       /* تركواز حيوي للأزرار */
-                            accentHover: '#0F766E',  /* تركواز عميق عند التفاعل */
-                            skyAccent: '#0284C7'     /* أزرق سماوي للمسات */
-                        }
-                    },
                     fontFamily: {
                         amiri: ['Amiri', 'serif']
+                    },
+                    colors: {
+                        tier: {
+                            accent: '#0D9488',
+                            accentHover: '#0F766E',
+                            skyAccent: '#0284C7'
+                        }
                     }
                 }
             }
         }
     </script>
-    
+
     <style>
-        /* =========================================================
-           إجبار خلفية HTML و BODY على التدرج الثلاثي (سماوي -> أبيض -> تركواز)
-           ========================================================= */
-        html, body {
-            min-height: 100vh !important;
-            margin: 0 !important;
-            padding: 0 !important;
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
             font-family: 'Amiri', serif;
-            font-size: 1.05rem;
-            line-height: 1.6;
         }
 
-        /* الوضع النهاري: سماوي في الأعلى، أبيض في الوسط، تركواز في الأسفل */
         body {
-            background-image: linear-gradient(to bottom, #BAE6FD 0%, #FFFFFF 50%, #CCFBF1 100%) !important;
-            background-attachment: fixed !important;
-            background-repeat: no-repeat !important;
-            background-size: cover !important;
-            color: #0F172A !important;
-            transition: background 0.3s ease, color 0.3s ease;
+            margin: 0;
+            min-height: 100vh;
+            background:
+                linear-gradient(
+                    135deg,
+                    #BAE6FD 0%,
+                    #FFFFFF 48%,
+                    #CCFBF1 100%
+                );
+            background-attachment: fixed;
+            color: #0f172a;
         }
 
-        /* الوضع الداكن (Dark Mode) */
         .dark body {
-            background-image: linear-gradient(to bottom, #030712 0%, #0F172A 50%, #042F2E 100%) !important;
-            background-attachment: fixed !important;
-            color: #F8FAFC !important;
+            background:
+                linear-gradient(
+                    135deg,
+                    #030712 0%,
+                    #0F172A 48%,
+                    #042F2E 100%
+                );
+            color: #f8fafc;
         }
 
-        /* البطاقات والأسطح شفافة بدرجة لطيفة لإظهار خلفية الصفحة الثلاثية */
-        .tier-surface {
-            background-color: rgba(255, 255, 255, 0.75) !important;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(186, 230, 253, 0.6);
-        }
-        .dark .tier-surface {
-            background-color: rgba(17, 24, 39, 0.8) !important;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(31, 41, 55, 0.8);
+        .glass {
+            background: rgba(255,255,255,.68);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,.65);
+            box-shadow: 0 12px 35px rgba(15,23,42,.08);
         }
 
-        .section-card {
-            background-color: rgba(255, 255, 255, 0.85) !important;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(186, 230, 253, 0.7);
-            transition: all 0.2s ease-in-out;
-        }
-        .dark .section-card {
-            background-color: rgba(17, 24, 39, 0.85) !important;
-            border: 1px solid #1F2937;
+        .dark .glass {
+            background: rgba(15,23,42,.68);
+            border-color: rgba(255,255,255,.08);
+            box-shadow: 0 12px 35px rgba(0,0,0,.25);
         }
 
-        .section-card:hover {
-            transform: translateY(-3px);
-            border-color: #0D9488;
-            box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.15);
+        .glass-strong {
+            background: rgba(255,255,255,.84);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,.75);
         }
 
-        .btn-hover-effect {
-            transition: all 0.15s ease-in-out;
-        }
-        .btn-hover-effect:hover {
-            transform: translateY(-1px);
+        .dark .glass-strong {
+            background: rgba(15,23,42,.84);
+            border-color: rgba(255,255,255,.08);
         }
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .hover-card {
+            transition: all .25s ease;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(15,23,42,.13);
+        }
+
+        .dark .hover-card:hover {
+            box-shadow: 0 18px 40px rgba(0,0,0,.32);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #0D9488, #0284C7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .progress-track {
+            height: 8px;
+            border-radius: 999px;
+            background: #e2e8f0;
+            overflow: hidden;
+        }
+
+        .dark .progress-track {
+            background: #1e293b;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #0D9488, #0284C7);
+        }
+
+        .fade-in {
+            animation: fadeIn .35s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .toast {
+            animation: toastIn .3s ease;
+        }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lesson-number {
+            min-width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0D9488, #0284C7);
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .subject-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(13,148,136,.12), rgba(2,132,199,.12));
+            color: #0D9488;
+        }
+
+        .dark .subject-icon {
+            background: linear-gradient(135deg, rgba(13,148,136,.18), rgba(2,132,199,.18));
+        }
+
+        button {
+            font-family: inherit;
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-tier-accent selection:text-white">
 
-    <!-- NAVIGATION BAR -->
-    <header class="sticky top-0 z-50 tier-surface shadow-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex items-center justify-between h-14">
-                
-                <div class="flex items-center gap-2 cursor-pointer" onclick="app.navigate('home')">
-                    <div class="w-8 h-8 rounded-lg bg-tier-accent flex items-center justify-center text-white shadow-xs">
-                        <i class="fa-solid fa-book-open-reader text-sm"></i>
-                    </div>
-                    <div>
-                        <span class="text-xl font-bold tracking-tight block leading-none">العربي</span>
-                        <span class="text-[10px] font-bold text-tier-skyAccent hidden sm:block">الإبريز اللغوي</span>
-                    </div>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="sticky top-0 z-50 glass-strong border-b border-white/40 dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="h-20 flex items-center justify-between">
+
+            <button
+                onclick="PlatformApp.navigate('home')"
+                class="flex items-center gap-3 text-right">
+
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-tier-accent to-tier-skyAccent text-white flex items-center justify-center shadow-lg">
+                    <i class="fa-solid fa-book-open text-xl"></i>
                 </div>
 
-                <nav class="hidden md:flex items-center gap-1">
-                    <button onclick="app.navigate('home')" class="px-3 py-1 rounded-md text-sm font-bold opacity-80 hover:opacity-100 hover:bg-white/60 dark:hover:bg-slate-800 transition">الرئيسية</button>
-                    <button onclick="app.navigate('subjects')" class="px-3 py-1 rounded-md text-sm font-bold opacity-80 hover:opacity-100 hover:bg-white/60 dark:hover:bg-slate-800 transition">المواد</button>
-                    <button onclick="app.navigate('review')" class="px-3 py-1 rounded-md text-sm font-bold opacity-80 hover:opacity-100 hover:bg-white/60 dark:hover:bg-slate-800 transition">المراجعة</button>
-                    <button onclick="app.navigate('quizzes')" class="px-3 py-1 rounded-md text-sm font-bold opacity-80 hover:opacity-100 hover:bg-white/60 dark:hover:bg-slate-800 transition">الاختبارات</button>
-                    <button onclick="app.navigate('dashboard')" class="px-3 py-1 rounded-md text-sm font-bold opacity-80 hover:opacity-100 hover:bg-white/60 dark:hover:bg-slate-800 transition">لوحة الطالب</button>
-                </nav>
-
-                <div class="flex items-center gap-1.5">
-                    <button id="theme-toggle" class="w-8 h-8 rounded-lg border border-sky-200 dark:border-slate-700 tier-surface flex items-center justify-center hover:bg-white dark:hover:bg-slate-800 transition" title="تبديل الوضع">
-                        <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-xs hidden"></i>
-                        <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-xs hidden"></i>
-                    </button>
-
-                    <button onclick="app.navigate('dashboard')" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1 rounded-lg bg-tier-accent hover:bg-tier-accentHover text-white font-bold text-xs shadow-xs transition">
-                        <i class="fa-solid fa-user text-[10px]"></i>
-                        <span>تسجيل الدخول</span>
-                    </button>
-
-                    <button id="mobile-menu-btn" class="md:hidden w-8 h-8 rounded-lg border border-sky-200 dark:border-slate-700 flex items-center justify-center hover:bg-white dark:hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-bars text-sm"></i>
-                    </button>
+                <div>
+                    <div class="font-bold text-lg sm:text-xl">
+                        منصة العربي التعليمية
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400">
+                        الإبريز اللغوي
+                    </div>
                 </div>
+            </button>
+
+            <div class="hidden lg:flex items-center gap-7 text-base">
+
+                <button onclick="PlatformApp.navigate('home')"
+                        class="hover:text-tier-accent transition">
+                    الرئيسية
+                </button>
+
+                <button onclick="PlatformApp.navigate('grades')"
+                        class="hover:text-tier-accent transition">
+                    المواد
+                </button>
+
+                <button onclick="PlatformApp.navigate('review')"
+                        class="hover:text-tier-accent transition">
+                    المراجعة
+                </button>
+
+                <button onclick="PlatformApp.navigate('quizzes')"
+                        class="hover:text-tier-accent transition">
+                    الاختبارات
+                </button>
+
+                <button onclick="PlatformApp.navigate('dashboard')"
+                        class="hover:text-tier-accent transition">
+                    لوحة الطالب
+                </button>
+
+            </div>
+
+            <div class="flex items-center gap-2">
+
+                <button
+                    onclick="PlatformApp.toggleDarkMode()"
+                    class="w-11 h-11 rounded-xl glass flex items-center justify-center hover:text-tier-accent transition"
+                    title="الوضع الليلي">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+
+                <button
+                    onclick="PlatformApp.login()"
+                    class="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-xl bg-tier-accent text-white hover:bg-tier-accentHover transition shadow-md">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    تسجيل الدخول
+                </button>
+
+                <button
+                    onclick="PlatformApp.toggleMobileMenu()"
+                    class="lg:hidden w-11 h-11 rounded-xl glass flex items-center justify-center">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden border-b border-sky-100 dark:border-slate-800 tier-surface px-4 py-2 space-y-1">
-            <button onclick="app.navigate('home'); app.toggleMobileMenu()" class="w-full text-right px-3 py-1.5 rounded-lg font-bold text-sm hover:bg-white dark:hover:bg-slate-800">الرئيسية</button>
-            <button onclick="app.navigate('subjects'); app.toggleMobileMenu()" class="w-full text-right px-3 py-1.5 rounded-lg font-bold text-sm hover:bg-white dark:hover:bg-slate-800">المواد الدراسية</button>
-            <button onclick="app.navigate('review'); app.toggleMobileMenu()" class="w-full text-right px-3 py-1.5 rounded-lg font-bold text-sm hover:bg-white dark:hover:bg-slate-800">المراجعة التفاعلية</button>
-            <button onclick="app.navigate('quizzes'); app.toggleMobileMenu()" class="w-full text-right px-3 py-1.5 rounded-lg font-bold text-sm hover:bg-white dark:hover:bg-slate-800">الاختبارات</button>
-            <button onclick="app.navigate('dashboard'); app.toggleMobileMenu()" class="w-full text-right px-3 py-1.5 rounded-lg font-bold text-sm hover:bg-white dark:hover:bg-slate-800">لوحة الطالب</button>
-            <div class="pt-1">
-                <button onclick="app.navigate('dashboard'); app.toggleMobileMenu()" class="w-full py-1.5 rounded-lg bg-tier-accent text-white font-bold text-sm text-center">تسجيل الدخول</button>
-            </div>
-        </div>
-    </header>
+        <div id="mobile-menu" class="hidden lg:hidden pb-5">
+            <div class="glass rounded-2xl p-4 flex flex-col gap-3">
 
-    <!-- MAIN VIEW CONTAINER -->
-    <main id="app-view" class="flex-grow">
-        <!-- Dynamic views render here -->
-    </main>
+                <button onclick="PlatformApp.navigate('home'); PlatformApp.toggleMobileMenu()"
+                        class="text-right p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">
+                    الرئيسية
+                </button>
 
-    <!-- TOAST NOTIFICATION CONTAINER -->
-    <div id="toast-container" class="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 pointer-events-none transition-all duration-200 opacity-0 translate-y-3">
-        <div class="bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 px-4 py-2 rounded-lg shadow-md flex items-center gap-2 border border-slate-700 dark:border-slate-200 pointer-events-auto">
-            <div class="w-5 h-5 rounded bg-tier-accent text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">
-                <i class="fa-solid fa-circle-info"></i>
-            </div>
-            <div>
-                <p id="toast-message" class="text-xs font-bold leading-tight"></p>
-                <p id="toast-submessage" class="text-[11px] opacity-80 mt-0.5 font-medium"></p>
+                <button onclick="PlatformApp.navigate('grades'); PlatformApp.toggleMobileMenu()"
+                        class="text-right p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">
+                    المواد
+                </button>
+
+                <button onclick="PlatformApp.navigate('review'); PlatformApp.toggleMobileMenu()"
+                        class="text-right p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">
+                    المراجعة
+                </button>
+
+                <button onclick="PlatformApp.navigate('quizzes'); PlatformApp.toggleMobileMenu()"
+                        class="text-right p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">
+                    الاختبارات
+                </button>
+
+                <button onclick="PlatformApp.navigate('dashboard'); PlatformApp.toggleMobileMenu()"
+                        class="text-right p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">
+                    لوحة الطالب
+                </button>
+
+                <button onclick="PlatformApp.login()"
+                        class="mt-2 px-4 py-3 rounded-xl bg-tier-accent text-white">
+                    تسجيل الدخول
+                </button>
             </div>
         </div>
     </div>
+</nav>
 
-    <!-- FOOTER SECTION -->
-    <footer class="tier-surface border-t border-sky-100 dark:border-slate-800 mt-4 transition-colors">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-2">
-                <div class="flex items-center gap-2">
-                    <div class="w-6 h-6 rounded bg-tier-accent flex items-center justify-center text-white font-bold">
-                        <i class="fa-solid fa-feather-pointed text-[10px]"></i>
+
+<!-- ================= MAIN ================= -->
+
+<main id="app-view" class="min-h-[calc(100vh-160px)]"></main>
+
+
+<!-- ================= TOAST ================= -->
+
+<div id="toast-container"
+     class="fixed bottom-6 left-6 z-[100] space-y-3"></div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="mt-20 border-t border-white/50 dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-tier-accent to-tier-skyAccent text-white flex items-center justify-center">
+                        <i class="fa-solid fa-book-open"></i>
                     </div>
                     <div>
-                        <p class="font-bold text-xs">منصة العربي التعليمية – الإبريز اللغوي</p>
+                        <div class="font-bold text-lg">منصة العربي التعليمية</div>
+                        <div class="text-sm text-slate-500 dark:text-slate-400">
+                            الإبريز اللغوي
+                        </div>
                     </div>
                 </div>
-                <div class="flex items-center gap-4 text-xs opacity-75 font-bold">
-                    <a href="#" class="hover:text-tier-accent transition">عن المنصة</a>
-                    <a href="#" class="hover:text-tier-accent transition">سياسة الخصوصية</a>
-                    <a href="#" class="hover:text-tier-accent transition">الدعم الفني</a>
+
+                <p class="text-slate-600 dark:text-slate-400 leading-8">
+                    منصة تعليمية عربية تجمع المناهج والدروس والتدريبات
+                    في تجربة تعليمية بسيطة وتفاعلية.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg mb-4">روابط المنصة</h3>
+
+                <div class="space-y-3 text-slate-600 dark:text-slate-400">
+                    <button onclick="PlatformApp.navigate('home')" class="block hover:text-tier-accent">
+                        الرئيسية
+                    </button>
+                    <button onclick="PlatformApp.navigate('grades')" class="block hover:text-tier-accent">
+                        الصفوف والمواد
+                    </button>
+                    <button onclick="PlatformApp.navigate('review')" class="block hover:text-tier-accent">
+                        المراجعة
+                    </button>
                 </div>
             </div>
+
+            <div>
+                <h3 class="font-bold text-lg mb-4">المساعدة</h3>
+
+                <div class="space-y-3 text-slate-600 dark:text-slate-400">
+                    <button onclick="PlatformApp.showToast('سياسة الخصوصية ستكون متاحة قريبًا')" class="block hover:text-tier-accent">
+                        سياسة الخصوصية
+                    </button>
+                    <button onclick="PlatformApp.showToast('يمكنك التواصل مع الدعم الفني قريبًا')" class="block hover:text-tier-accent">
+                        الدعم الفني
+                    </button>
+                </div>
+            </div>
+
         </div>
-    </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        const AppData = {
-            sections: [
-                {
-                    id: "sec_edu",
-                    title: "التربية والتعليم",
-                    desc: "المناهج الرسمية لمدارس التعليم العام بجميع المراحل.",
-                    icon: "fa-graduation-cap",
-                    badge: "التعليم العام",
-                    color: "from-teal-600 to-teal-800",
-                    accentBg: "bg-teal-100/70 text-teal-900 dark:bg-teal-950/40 dark:text-teal-300",
-                    features: ["مناهج الوزارة المعتمدة", "تدريبات وإمتحانات شاملة"]
-                },
-                {
-                    id: "sec_azhar",
-                    title: "الأزهر الشريف",
-                    desc: "المناهج الشرعية واللغوية المتخصصة لطلاب المعاهد الأزهرية.",
-                    icon: "fa-mosque",
-                    badge: "التعليم الأزهري",
-                    color: "from-sky-600 to-sky-800",
-                    accentBg: "bg-sky-100/70 text-sky-900 dark:bg-sky-950/40 dark:text-sky-300",
-                    features: ["علوم العربية والشرعية", "إعراب وتطبيقات تفاعلية"]
-                },
-                {
-                    id: "sec_gulf",
-                    title: "مناهج الخليج العربي",
-                    desc: "المناهج المعتمدة لدول الخليج: الإمارات، السعودية، قطر، الكويت.",
-                    icon: "fa-earth-middle-east",
-                    badge: "الخليج العربي",
-                    color: "from-cyan-600 to-teal-700",
-                    accentBg: "bg-cyan-100/70 text-cyan-900 dark:bg-cyan-950/40 dark:text-cyan-300",
-                    features: ["تغطية شاملة للمناهج الوطنية", "وفق المعايير المعاصرة"]
-                },
-                {
-                    id: "sec_adult",
-                    title: "تعليم الكبار",
-                    desc: "مسارات مبسطة لتعلم العربية ومحو الأمية القرائية.",
-                    icon: "fa-book-reader",
-                    badge: "التعليم المستمر",
-                    color: "from-blue-600 to-indigo-800",
-                    accentBg: "bg-blue-100/70 text-blue-900 dark:bg-blue-950/40 dark:text-blue-300",
-                    features: ["مناهج تأسيسية مبسطة", "تعلم الطلاقة والقراءة"]
-                }
-            ],
-            gulfCountries: [
-                { id: "uae", name: "الإمارات", icon: "fa-flag" },
-                { id: "ksa", name: "السعودية", icon: "fa-flag" },
-                { id: "qatar", name: "قطر", icon: "fa-flag" },
-                { id: "kuwait", name: "الكويت", icon: "fa-flag" }
-            ],
-            stages: [
-                {
-                    id: "stage_primary",
-                    name: "المرحلة الابتدائية",
-                    desc: "تأسيس المهارات اللغوية الأساسية",
-                    countText: "6 صفوف",
-                    icon: "fa-child-reaching",
-                    colorClass: "text-teal-700 dark:text-teal-400",
-                    bgClass: "bg-teal-100/60 dark:bg-teal-950/30",
-                    grades: [
-                        { id: "g_p1", name: "الصف الأول الابتدائي" },
-                        { id: "g_p2", name: "الصف الثاني الابتدائي" },
-                        { id: "g_p3", name: "الصف الثالث الابتدائي" },
-                        { id: "g_p4", name: "الصف الرابع الابتدائي" },
-                        { id: "g_p5", name: "الصف الخامس الابتدائي" },
-                        { id: "g_p6", name: "الصف السادس الابتدائي" }
-                    ]
-                },
-                {
-                    id: "stage_prep",
-                    name: "المرحلة المتوسطة / الإعدادية",
-                    desc: "تنمية المهارات اللغوية والتطبيقية",
-                    countText: "3 صفوف",
-                    icon: "fa-user-graduate",
-                    colorClass: "text-sky-700 dark:text-sky-400",
-                    bgClass: "bg-sky-100/60 dark:bg-sky-950/30",
-                    grades: [
-                        { id: "g_m1", name: "الصف السابع (الأول المتوسط)" },
-                        { id: "g_m2", name: "الصف الثامن (الثاني المتوسط)" },
-                        { id: "g_m3", name: "الصف التاسع (الثالث المتوسط)" }
-                    ]
-                },
-                {
-                    id: "stage_sec",
-                    name: "المرحلة الثانوية",
-                    desc: "علوم اللغة، الأدب، والروايات والتحليل",
-                    countText: "3 صفوف",
-                    icon: "fa-award",
-                    colorClass: "text-cyan-700 dark:text-cyan-400",
-                    bgClass: "bg-cyan-100/60 dark:bg-cyan-950/30",
-                    grades: [
-                        { id: "g_s1", name: "الصف العاشر (الأول الثانوي)" },
-                        { id: "g_s2", name: "الصف الحادي عشر (الثاني الثانوي)" },
-                        { id: "g_s3", name: "الصف الثاني عشر (الثالث الثانوي)" }
-                    ]
-                }
-            ],
-            subjects: [
-                {
-                    id: "sub_grammar",
-                    name: "النحو والقواعد الإملائية",
-                    category: "grammar",
-                    icon: "fa-spell-check",
-                    color: "from-teal-600 to-teal-800",
-                    badge: "أساسي",
-                    lessonsCount: 14,
-                    progress: 65,
-                    description: "دراسة قواعد الإعراب وبناء الجملة وضوابط الكتابة."
-                },
-                {
-                    id: "sub_rhetoric",
-                    name: "البلاغة والتذوق الأدبي",
-                    category: "rhetoric",
-                    icon: "fa-feather",
-                    color: "from-sky-600 to-sky-800",
-                    badge: "متقدم",
-                    lessonsCount: 10,
-                    progress: 40,
-                    description: "عالم البيان والبديع والمعاني وتحليل الصور الجمالية."
-                },
-                {
-                    id: "sub_literature",
-                    name: "الأدب والرواية",
-                    category: "literature",
-                    icon: "fa-scroll",
-                    color: "from-cyan-600 to-slate-800",
-                    badge: "ثقافي",
-                    lessonsCount: 8,
-                    progress: 80,
-                    description: "استعراض العصور الأدبية والروايات وتطور الفنون."
-                },
-                {
-                    id: "sub_texts",
-                    name: "النصوص الشعرية والنثرية",
-                    category: "texts",
-                    icon: "fa-quote-right",
-                    color: "from-emerald-600 to-slate-800",
-                    badge: "تطبيقي",
-                    lessonsCount: 12,
-                    progress: 25,
-                    description: "تحليل القصائد والخطب وحفظ النصوص المقررة."
-                },
-                {
-                    id: "sub_reading",
-                    name: "القراءة والنقد اللغوي",
-                    category: "reading",
-                    icon: "fa-book-open",
-                    color: "from-blue-600 to-slate-800",
-                    badge: "استيعاب",
-                    lessonsCount: 6,
-                    progress: 10,
-                    description: "تنمية مهارات الفهم القرائي والاستنباط وتحليل الفكر."
-                }
+        <div class="mt-10 pt-6 border-t border-slate-200/70 dark:border-slate-700/60 text-center text-sm text-slate-500">
+            © 2026 منصة العربي التعليمية – جميع الحقوق محفوظة
+        </div>
+
+    </div>
+</footer>
+
+
+<script>
+
+const AppData = {
+
+    sections: [
+        {
+            id: 'sec_edu',
+            title: 'التربية والتعليم',
+            desc: 'المناهج الرسمية لمدارس التعليم العام بجميع المراحل.',
+            icon: 'fa-graduation-cap',
+            badge: 'التعليم العام',
+            features: [
+                'مناهج الوزارة المعتمدة',
+                'تدريبات وامتحانات شاملة'
             ]
-        };
+        },
 
-        class PlatformApp {
-            constructor() {
-                this.state = {
-                    currentView: 'home',
-                    selectedSectionId: 'sec_edu',
-                    selectedGulfCountry: 'uae',
-                    selectedStageId: 'stage_sec',
-                    selectedGradeId: 'g_s3',
-                    activeSubjectCategory: 'all'
-                };
-                this.initTheme();
-                this.bindEvents();
+        {
+            id: 'sec_azhar',
+            title: 'الأزهر الشريف',
+            desc: 'المناهج الشرعية واللغوية المتخصصة لطلاب المعاهد الأزهرية.',
+            icon: 'fa-mosque',
+            badge: 'التعليم الأزهري',
+            features: [
+                'علوم العربية والشرعية',
+                'إعراب وتطبيقات تفاعلية'
+            ]
+        },
+
+        {
+            id: 'sec_gulf',
+            title: 'مناهج الخليج العربي',
+            desc: 'المناهج المعتمدة لدول الخليج: الإمارات، السعودية، قطر، الكويت.',
+            icon: 'fa-earth-middle-east',
+            badge: 'الخليج العربي',
+            features: [
+                'تغطية شاملة للمناهج الوطنية',
+                'وفق المعايير المعاصرة'
+            ]
+        },
+
+        {
+            id: 'sec_adult',
+            title: 'تعليم الكبار',
+            desc: 'مسارات مبسطة لتعلم العربية ومحو الأمية القرائية.',
+            icon: 'fa-book-reader',
+            badge: 'التعليم المستمر',
+            features: [
+                'مناهج تأسيسية مبسطة',
+                'تعلم الطلاقة والقراءة'
+            ]
+        }
+    ],
+
+
+    gulfCountries: [
+        {
+            id: 'uae',
+            title: 'الإمارات',
+            icon: 'fa-building-columns'
+        },
+        {
+            id: 'ksa',
+            title: 'السعودية',
+            icon: 'fa-kaaba'
+        },
+        {
+            id: 'qatar',
+            title: 'قطر',
+            icon: 'fa-landmark'
+        },
+        {
+            id: 'kuwait',
+            title: 'الكويت',
+            icon: 'fa-city'
+        }
+    ],
+
+
+    stages: [
+        {
+            id: 'stage_primary',
+            title: 'المرحلة الابتدائية',
+            subtitle: 'من الصف الأول إلى الصف السادس',
+            icon: 'fa-child-reaching',
+            grades: [
+                { id: 'g_p1', title: 'الصف الأول الابتدائي', short: 'الأول' },
+                { id: 'g_p2', title: 'الصف الثاني الابتدائي', short: 'الثاني' },
+                { id: 'g_p3', title: 'الصف الثالث الابتدائي', short: 'الثالث' },
+                { id: 'g_p4', title: 'الصف الرابع الابتدائي', short: 'الرابع' },
+                { id: 'g_p5', title: 'الصف الخامس الابتدائي', short: 'الخامس' },
+                { id: 'g_p6', title: 'الصف السادس الابتدائي', short: 'السادس' }
+            ]
+        },
+
+        {
+            id: 'stage_prep',
+            title: 'المرحلة المتوسطة / الإعدادية',
+            subtitle: 'من الصف الأول إلى الصف الثالث',
+            icon: 'fa-user-graduate',
+            grades: [
+                { id: 'g_m1', title: 'الصف الأول الإعدادي', short: 'الأول' },
+                { id: 'g_m2', title: 'الصف الثاني الإعدادي', short: 'الثاني' },
+                { id: 'g_m3', title: 'الصف الثالث الإعدادي', short: 'الثالث' }
+            ]
+        },
+
+        {
+            id: 'stage_sec',
+            title: 'المرحلة الثانوية',
+            subtitle: 'من الصف الأول إلى الصف الثالث',
+            icon: 'fa-school',
+            grades: [
+                { id: 'g_s1', title: 'الصف الأول الثانوي', short: 'الأول' },
+                { id: 'g_s2', title: 'الصف الثاني الثانوي', short: 'الثاني' },
+                { id: 'g_s3', title: 'الصف الثالث الثانوي', short: 'الثالث' }
+            ]
+        }
+    ],
+
+
+    subjects: [
+        {
+            id: 'sub_grammar',
+            title: 'النحو والقواعد الإملائية',
+            category: 'grammar',
+            icon: 'fa-spell-check',
+            color: 'teal',
+            lessons: 14,
+            progress: 65,
+            desc: 'دراسة النحو والقواعد الإملائية بأسلوب مبسط مع أمثلة وتطبيقات.'
+        },
+
+        {
+            id: 'sub_rhetoric',
+            title: 'البلاغة والتذوق الأدبي',
+            category: 'rhetoric',
+            icon: 'fa-feather-pointed',
+            color: 'sky',
+            lessons: 10,
+            progress: 40,
+            desc: 'فهم أسرار التعبير العربي والصور البيانية والمحسنات البديعية.'
+        },
+
+        {
+            id: 'sub_literature',
+            title: 'الأدب والرواية',
+            category: 'literature',
+            icon: 'fa-book',
+            color: 'amber',
+            lessons: 8,
+            progress: 80,
+            desc: 'رحلة في الأدب العربي ومدارسه واتجاهاته وأهم أعلامه.'
+        },
+
+        {
+            id: 'sub_texts',
+            title: 'النصوص الشعرية والنثرية',
+            category: 'texts',
+            icon: 'fa-scroll',
+            color: 'violet',
+            lessons: 12,
+            progress: 25,
+            desc: 'قراءة النصوص وتحليلها واستخراج الأفكار والجماليات منها.'
+        },
+
+        {
+            id: 'sub_reading',
+            title: 'القراءة والنقد اللغوي',
+            category: 'reading',
+            icon: 'fa-magnifying-glass',
+            color: 'rose',
+            lessons: 6,
+            progress: 10,
+            desc: 'تنمية مهارات القراءة والفهم والتحليل والنقد اللغوي.'
+        }
+    ],
+
+
+    lessons: {
+
+        sub_grammar: [
+            {
+                id: 'grammar_1',
+                title: 'الكلمة وأقسامها',
+                duration: '25 دقيقة',
+                desc: 'التعرف إلى الكلمة وأقسامها الثلاثة: الاسم والفعل والحرف.'
+            },
+            {
+                id: 'grammar_2',
+                title: 'علامات الاسم',
+                duration: '30 دقيقة',
+                desc: 'أهم العلامات التي تميز الاسم في الجملة العربية.'
+            },
+            {
+                id: 'grammar_3',
+                title: 'علامات الفعل',
+                duration: '25 دقيقة',
+                desc: 'كيف نميز الفعل الماضي والمضارع والأمر.'
+            },
+            {
+                id: 'grammar_4',
+                title: 'الجملة الاسمية',
+                duration: '35 دقيقة',
+                desc: 'المبتدأ والخبر وأنواعهما وأهم أحكامهما.'
+            },
+            {
+                id: 'grammar_5',
+                title: 'الجملة الفعلية',
+                duration: '35 دقيقة',
+                desc: 'الفعل والفاعل والمفعول به وبناء الجملة الفعلية.'
+            },
+            {
+                id: 'grammar_6',
+                title: 'علامات الإعراب الأصلية',
+                duration: '30 دقيقة',
+                desc: 'الرفع والنصب والجر والجزم وعلاماتها الأصلية.'
             }
+        ],
 
-            init() {
-                this.render();
+        sub_rhetoric: [
+            {
+                id: 'rhetoric_1',
+                title: 'مدخل إلى علم البلاغة',
+                duration: '25 دقيقة',
+                desc: 'مفهوم البلاغة وأهميتها في فهم النص العربي.'
+            },
+            {
+                id: 'rhetoric_2',
+                title: 'التشبيه',
+                duration: '30 دقيقة',
+                desc: 'أركان التشبيه وأنواعه وأثره في جمال التعبير.'
+            },
+            {
+                id: 'rhetoric_3',
+                title: 'الاستعارة',
+                duration: '35 دقيقة',
+                desc: 'التعرف إلى الاستعارة المكنية والتصريحية.'
+            },
+            {
+                id: 'rhetoric_4',
+                title: 'الكناية',
+                duration: '30 دقيقة',
+                desc: 'الكناية وأقسامها وكيفية اكتشافها في النص.'
+            },
+            {
+                id: 'rhetoric_5',
+                title: 'المحسنات البديعية',
+                duration: '35 دقيقة',
+                desc: 'الجناس والطباق والمقابلة وأثرها الجمالي.'
             }
+        ],
 
-            initTheme() {
-                const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-                const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-                if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.classList.add('dark');
-                    themeToggleLightIcon.classList.remove('hidden');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    themeToggleDarkIcon.classList.remove('hidden');
-                }
-
-                const themeToggleBtn = document.getElementById('theme-toggle');
-                themeToggleBtn.addEventListener('click', () => {
-                    themeToggleDarkIcon.classList.toggle('hidden');
-                    themeToggleLightIcon.classList.toggle('hidden');
-
-                    if (localStorage.getItem('color-theme')) {
-                        if (localStorage.getItem('color-theme') === 'light') {
-                            document.documentElement.classList.add('dark');
-                            localStorage.setItem('color-theme', 'dark');
-                        } else {
-                            document.documentElement.classList.remove('dark');
-                            localStorage.setItem('color-theme', 'light');
-                        }
-                    } else {
-                        if (document.documentElement.classList.contains('dark')) {
-                            document.documentElement.classList.remove('dark');
-                            localStorage.setItem('color-theme', 'light');
-                        } else {
-                            document.documentElement.classList.add('dark');
-                            localStorage.setItem('color-theme', 'dark');
-                        }
-                    }
-                });
+        sub_literature: [
+            {
+                id: 'literature_1',
+                title: 'مدخل إلى الأدب العربي',
+                duration: '30 دقيقة',
+                desc: 'تعريف الأدب ومراحل تطوره عبر العصور.'
+            },
+            {
+                id: 'literature_2',
+                title: 'الأدب في العصر الجاهلي',
+                duration: '35 دقيقة',
+                desc: 'خصائص الشعر والنثر في العصر الجاهلي.'
+            },
+            {
+                id: 'literature_3',
+                title: 'الأدب في صدر الإسلام',
+                duration: '30 دقيقة',
+                desc: 'أثر الإسلام في الشعر والنثر العربي.'
+            },
+            {
+                id: 'literature_4',
+                title: 'الأدب الأموي',
+                duration: '35 دقيقة',
+                desc: 'الشعر السياسي والغزل والنقائض.'
             }
+        ],
 
-            bindEvents() {
-                document.getElementById('mobile-menu-btn').addEventListener('click', () => this.toggleMobileMenu());
+        sub_texts: [
+            {
+                id: 'texts_1',
+                title: 'كيف نقرأ النص الأدبي؟',
+                duration: '25 دقيقة',
+                desc: 'خطوات التعامل مع النص الأدبي واستخراج أفكاره.'
+            },
+            {
+                id: 'texts_2',
+                title: 'الفكرة العامة والأفكار الجزئية',
+                duration: '30 دقيقة',
+                desc: 'كيفية تحديد الفكرة العامة والأفكار الرئيسة.'
+            },
+            {
+                id: 'texts_3',
+                title: 'العاطفة في النص',
+                duration: '25 دقيقة',
+                desc: 'اكتشاف العاطفة ووسائل التعبير عنها.'
+            },
+            {
+                id: 'texts_4',
+                title: 'الصور الجمالية',
+                duration: '35 دقيقة',
+                desc: 'تحليل الصور الجمالية والتعبيرات الفنية.'
             }
+        ],
 
-            toggleMobileMenu() {
-                const menu = document.getElementById('mobile-menu');
-                menu.classList.toggle('hidden');
+        sub_reading: [
+            {
+                id: 'reading_1',
+                title: 'مهارات القراءة الواعية',
+                duration: '25 دقيقة',
+                desc: 'كيف نقرأ النص بفهم وتركيز.'
+            },
+            {
+                id: 'reading_2',
+                title: 'استخراج المعلومات',
+                duration: '30 دقيقة',
+                desc: 'تحديد المعلومات الصريحة والضمنية في النص.'
+            },
+            {
+                id: 'reading_3',
+                title: 'الفهم والاستنتاج',
+                duration: '30 دقيقة',
+                desc: 'الانتقال من القراءة إلى الاستنتاج والتحليل.'
             }
+        ]
+    }
+};
 
-            navigate(view, params = {}) {
-                this.state.currentView = view;
-                
-                if ('section' in params) this.state.selectedSectionId = params.section;
-                if ('country' in params) this.state.selectedGulfCountry = params.country;
-                if ('stage' in params) this.state.selectedStageId = params.stage;
-                if ('grade' in params) this.state.selectedGradeId = params.grade;
 
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                this.render();
-            }
+const PlatformApp = {
 
-            filterCategory(cat) {
-                this.state.activeSubjectCategory = cat;
-                this.render();
-            }
+    state: {
+        currentView: 'home',
 
-            showToast(title, subtitle) {
-                const container = document.getElementById('toast-container');
-                document.getElementById('toast-message').innerText = title;
-                document.getElementById('toast-submessage').innerText = subtitle;
+        selectedSectionId: 'sec_edu',
 
-                container.classList.remove('opacity-0', 'translate-y-3');
-                container.classList.add('opacity-100', 'translate-y-0');
+        selectedGulfCountry: 'uae',
 
-                setTimeout(() => {
-                    container.classList.remove('opacity-100', 'translate-y-0');
-                    container.classList.add('opacity-0', 'translate-y-3');
-                }, 2500);
-            }
+        selectedStageId: 'stage_sec',
 
-            render() {
-                const mainContainer = document.getElementById('app-view');
-                
-                switch(this.state.currentView) {
-                    case 'home':
-                        mainContainer.innerHTML = this.templateHome();
-                        break;
-                    case 'grades':
-                        mainContainer.innerHTML = this.templateGradesView();
-                        break;
-                    case 'subjects':
-                        mainContainer.innerHTML = this.templateSubjectsView();
-                        break;
-                    case 'review':
-                    case 'quizzes':
-                    case 'dashboard':
-                        mainContainer.innerHTML = this.templatePlaceholder(this.state.currentView);
-                        break;
-                    default:
-                        mainContainer.innerHTML = this.templateHome();
-                }
-            }
+        selectedGradeId: 'g_s3',
 
-            templateHome() {
-                return `
-                    <!-- HERO SECTION -->
-                    <section class="relative py-6 border-b border-sky-100/50 dark:border-slate-800 tier-surface">
-                        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-                            <div class="text-center max-w-3xl mx-auto">
-                                
-                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 dark:bg-slate-800 text-tier-skyAccent font-bold text-xs mb-2.5 border border-sky-100 dark:border-slate-700 shadow-xs">
-                                    <i class="fa-solid fa-sparkles text-amber-500 text-[10px]"></i>
-                                    منصة العربي التعليمية – الإبريز اللغوي
-                                </span>
-                                
-                                <h1 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight mb-2">
-                                    طريقك المتقن لفهم اللغة العربية <br>
-                                    <span class="text-tier-accent">
-                                        تعلم، راجع، واختبر مهاراتك
-                                    </span>
-                                </h1>
-                                
-                                <p class="text-xs sm:text-sm opacity-85 font-medium leading-relaxed mb-4 max-w-xl mx-auto">
-                                    منصة تعليمية تفاعلية تساعدك على الفهم والمراجعة والاختبار. صُممت لتواكب أرقى معايير التعليم بأسلوب شيق وبنية متكاملة.
-                                </p>
-                                
-                                <div class="flex flex-col sm:flex-row items-center justify-center gap-2 mb-4">
-                                    <button onclick="document.getElementById('sections-list').scrollIntoView({behavior: 'smooth'})" class="btn-hover-effect w-full sm:w-auto px-5 py-2 rounded-lg bg-tier-accent hover:bg-tier-accentHover text-white font-bold text-xs shadow-xs flex items-center justify-center gap-1.5">
-                                        <span>ابدأ التعلم الآن</span>
-                                        <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                                    </button>
-                                    <button onclick="app.navigate('subjects')" class="btn-hover-effect w-full sm:w-auto px-5 py-2 rounded-lg border border-sky-200 dark:border-slate-700 bg-white/60 dark:bg-slate-800 hover:bg-white font-bold text-xs">
-                                        استكشف المواد
-                                    </button>
-                                </div>
+        selectedSubjectId: null,
 
-                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 border-t border-sky-100 dark:border-slate-800 max-w-2xl mx-auto">
-                                    <div class="flex items-center justify-center gap-1.5 p-1.5 rounded-lg bg-white/70 dark:bg-slate-900 border border-sky-100 dark:border-slate-800 shadow-xs">
-                                        <i class="fa-solid fa-layer-group text-teal-600 text-[10px]"></i>
-                                        <span class="text-[11px] font-bold">مسارات متكاملة</span>
-                                    </div>
-                                    <div class="flex items-center justify-center gap-1.5 p-1.5 rounded-lg bg-white/70 dark:bg-slate-900 border border-sky-100 dark:border-slate-800 shadow-xs">
-                                        <i class="fa-solid fa-cards-blank text-sky-600 text-[10px]"></i>
-                                        <span class="text-[11px] font-bold">بطاقات مراجعة</span>
-                                    </div>
-                                    <div class="flex items-center justify-center gap-1.5 p-1.5 rounded-lg bg-white/70 dark:bg-slate-900 border border-sky-100 dark:border-slate-800 shadow-xs">
-                                        <i class="fa-solid fa-vial-circle-check text-cyan-600 text-[10px]"></i>
-                                        <span class="text-[11px] font-bold">اختبارات تفاعلية</span>
-                                    </div>
-                                    <div class="flex items-center justify-center gap-1.5 p-1.5 rounded-lg bg-white/70 dark:bg-slate-900 border border-sky-100 dark:border-slate-800 shadow-xs">
-                                        <i class="fa-solid fa-chart-line-up text-amber-600 text-[10px]"></i>
-                                        <span class="text-[11px] font-bold">متابعة التقدم</span>
-                                    </div>
-                                </div>
+        selectedLessonId: null,
 
-                            </div>
-                        </div>
-                    </section>
+        activeSubjectCategory: 'all'
+    },
 
-                    <!-- SECTIONS LIST -->
-                    <section id="sections-list" class="py-6">
-                        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-                            <div class="text-center max-w-xl mx-auto mb-4">
-                                <span class="text-[10px] font-extrabold tracking-widest text-tier-accent uppercase mb-0.5 block">اختر مسارك التعليمي</span>
-                                <h2 class="text-xl sm:text-2xl font-bold mb-0.5">الأقسام التعليمية الرئيسية</h2>
-                                <p class="opacity-75 font-medium text-xs">حدد القسم للوصول المباشر إلى صفوفك ومقرراتك الدراسية</p>
-                            </div>
 
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 items-stretch">
-                                ${AppData.sections.map(sec => `
-                                    <div class="section-card rounded-xl p-4 flex flex-col justify-between h-full shadow-xs">
-                                        <div>
-                                            <div class="flex items-center justify-between mb-3">
-                                                <div class="w-8 h-8 rounded-lg bg-gradient-to-br ${sec.color} flex items-center justify-center text-white text-sm shadow-xs">
-                                                    <i class="fa-solid ${sec.icon}"></i>
-                                                </div>
-                                                <span class="px-2 py-0.5 rounded text-[10px] font-bold ${sec.accentBg}">
-                                                    ${sec.badge}
-                                                </span>
-                                            </div>
-                                            
-                                            <h3 class="text-base font-bold mb-1">
-                                                ${sec.title}
-                                            </h3>
-                                            
-                                            <p class="opacity-75 text-xs leading-relaxed mb-3 font-medium">
-                                                ${sec.desc}
-                                            </p>
+    init() {
 
-                                            <ul class="space-y-1.5 mb-4 border-t border-sky-100/50 dark:border-slate-800 pt-3">
-                                                ${sec.features.map(f => `
-                                                    <li class="flex items-center gap-1.5 text-[11px] font-semibold">
-                                                        <i class="fa-solid fa-circle-check text-tier-accent text-[9px]"></i>
-                                                        <span>${f}</span>
-                                                    </li>
-                                                `).join('')}
-                                            </ul>
-                                        </div>
+        this.loadTheme();
 
-                                        <button onclick="app.navigate('grades', { section: '${sec.id}', stage: null, grade: null })" class="btn-hover-effect w-full py-1.5 rounded-lg bg-sky-50/80 dark:bg-slate-800 hover:bg-tier-accent hover:text-white font-bold text-xs transition-colors duration-150 flex items-center justify-center gap-1 mt-auto border border-sky-100 dark:border-slate-700">
-                                            <span>استكشف الصفوف</span>
-                                            <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                                        </button>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </section>
-                `;
-            }
+        this.render();
 
-            templateGradesView() {
-                const activeSection = AppData.sections.find(s => s.id === this.state.selectedSectionId) || AppData.sections[0];
-                const isGulfSection = activeSection.id === 'sec_gulf';
-                const activeCountry = isGulfSection ? AppData.gulfCountries.find(c => c.id === this.state.selectedGulfCountry) || AppData.gulfCountries[0] : null;
-                const activeStage = AppData.stages.find(s => s.id === this.state.selectedStageId);
+    },
 
-                return `
-                    <section class="py-5 min-h-[60vh]">
-                        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-                            
-                            <!-- BREADCRUMBS -->
-                            <nav class="mb-3 overflow-x-auto no-scrollbar">
-                                <ol class="flex items-center gap-1.5 text-xs font-bold opacity-75 whitespace-nowrap">
-                                    <li>
-                                        <button onclick="app.navigate('home')" class="hover:text-tier-accent flex items-center gap-1 transition">
-                                            <i class="fa-solid fa-house text-[10px]"></i>
-                                            <span>الرئيسية</span>
-                                        </button>
-                                    </li>
-                                    <li class="opacity-40">/</li>
-                                    <li>
-                                        <button onclick="app.navigate('grades', { section: '${activeSection.id}', stage: null, grade: null })" class="${!activeStage ? 'text-tier-accent font-extrabold' : 'hover:text-tier-accent'} transition">
-                                            ${activeSection.title}
-                                        </button>
-                                    </li>
 
-                                    ${isGulfSection && activeCountry ? `
-                                        <li class="opacity-40">/</li>
-                                        <li class="text-amber-600 font-extrabold">${activeCountry.name}</li>
-                                    ` : ''}
+    navigate(view, params = {}) {
 
-                                    ${activeStage ? `
-                                        <li class="opacity-40">/</li>
-                                        <li class="text-tier-accent font-extrabold">${activeStage.name}</li>
-                                    ` : ''}
-                                </ol>
-                            </nav>
+        if ('section' in params && params.section) {
+            this.state.selectedSectionId = params.section;
+        }
 
-                            <!-- PAGE HEADER -->
-                            <div class="tier-surface rounded-xl p-4 shadow-xs mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br ${activeSection.color} flex items-center justify-center text-white text-base shadow-xs flex-shrink-0">
-                                        <i class="fa-solid ${activeSection.icon}"></i>
-                                    </div>
-                                    <div>
-                                        <span class="text-[10px] font-extrabold text-tier-accent tracking-wide block leading-none">
-                                            القسم: ${activeSection.title}
-                                        </span>
-                                        <h1 class="text-lg sm:text-xl font-black mt-1">
-                                            ${activeStage ? activeStage.name : (isGulfSection ? `مناهج ${activeCountry.name}` : 'اختر المرحلة الدراسية')}
-                                        </h1>
-                                    </div>
-                                </div>
+        if ('country' in params && params.country) {
+            this.state.selectedGulfCountry = params.country;
+        }
 
-                                <button onclick="app.navigate('home')" class="btn-hover-effect px-3 py-1.5 rounded-lg bg-white/80 dark:bg-slate-800 hover:bg-white font-bold text-xs flex items-center gap-1 border border-sky-100 dark:border-slate-700">
-                                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                                    <span>العودة للرئيسية</span>
-                                </button>
-                            </div>
+        if ('stage' in params && params.stage) {
+            this.state.selectedStageId = params.stage;
 
-                            <!-- GULF COUNTRY SELECTOR -->
-                            ${isGulfSection ? `
-                                <div class="mb-4">
-                                    <h3 class="text-xs font-bold mb-2">اختر الدولة:</h3>
-                                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                                        ${AppData.gulfCountries.map(cnt => `
-                                            <button onclick="app.navigate('grades', { section: 'sec_gulf', country: '${cnt.id}', stage: null, grade: null })"
-                                                    class="p-2.5 rounded-lg border transition text-right flex items-center gap-2 ${this.state.selectedGulfCountry === cnt.id ? 'bg-tier-accent text-white border-teal-700 shadow-xs' : 'tier-surface hover:bg-white'}">
-                                                <i class="fa-solid ${cnt.icon} text-xs"></i>
-                                                <span class="font-bold text-xs">${cnt.name}</span>
-                                            </button>
-                                        `).join('')}
-                                    </div>
-                                </div>
-                            ` : ''}
-
-                            <!-- STAGES LIST -->
-                            ${!activeStage ? `
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-                                    ${AppData.stages.map(stg => `
-                                        <div onclick="app.navigate('grades', { section: '${activeSection.id}', stage: '${stg.id}', grade: null })" class="section-card rounded-xl p-4 cursor-pointer flex flex-col justify-between group shadow-xs">
-                                            <div>
-                                                <div class="flex items-center justify-between mb-3">
-                                                    <div class="w-8 h-8 rounded-lg ${stg.bgClass} ${stg.colorClass} flex items-center justify-center text-sm font-bold">
-                                                        <i class="fa-solid ${stg.icon}"></i>
-                                                    </div>
-                                                    <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-white/80 dark:bg-slate-800 opacity-80">
-                                                        ${stg.countText}
-                                                    </span>
-                                                </div>
-
-                                                <h3 class="text-base font-bold mb-1 group-hover:text-tier-accent transition-colors">
-                                                    ${stg.name}
-                                                </h3>
-
-                                                <p class="opacity-75 text-xs leading-relaxed mb-3 font-medium">
-                                                    ${stg.desc}
-                                                </p>
-                                            </div>
-
-                                            <div class="pt-2 border-t border-sky-100/50 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-tier-accent">
-                                                <span>استعرض الصفوف</span>
-                                                <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                                            </div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            ` : ''}
-
-                            <!-- GRADES LIST -->
-                            ${activeStage ? `
-                                <div class="tier-surface rounded-xl p-4 shadow-xs">
-                                    <div class="flex items-center justify-between mb-3 pb-2.5 border-b border-sky-100 dark:border-slate-800">
-                                        <div class="flex items-center gap-2">
-                                            <i class="fa-solid fa-layer-group text-tier-accent text-sm"></i>
-                                            <h2 class="text-base font-bold">
-                                                صفوف ${activeStage.name} ${isGulfSection ? `(${activeCountry.name})` : ''}
-                                            </h2>
-                                        </div>
-                                    </div>
-
-                                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-                                        ${activeStage.grades.map(grd => `
-                                            <div onclick="app.navigate('subjects', { section: '${activeSection.id}', stage: '${activeStage.id}', grade: '${grd.id}' })" 
-                                                 class="btn-hover-effect p-3 rounded-lg border border-sky-100 dark:border-slate-800 bg-white/70 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-800 transition cursor-pointer flex items-center justify-between group shadow-xs">
-                                                
-                                                <div class="flex items-center gap-2.5">
-                                                    <div class="w-7 h-7 rounded bg-white dark:bg-slate-800 border border-sky-100 dark:border-slate-700 flex items-center justify-center text-tier-accent font-bold group-hover:bg-tier-accent group-hover:text-white transition-colors">
-                                                        <i class="fa-solid fa-book-open text-[10px]"></i>
-                                                    </div>
-                                                    <span class="font-bold text-xs">
-                                                        ${grd.name}
-                                                    </span>
-                                                </div>
-
-                                                <i class="fa-solid fa-chevron-left opacity-30 text-[10px]"></i>
-                                            </div>
-                                        `).join('')}
-                                    </div>
-                                </div>
-                            ` : ''}
-
-                        </div>
-                    </section>
-                `;
-            }
-
-            templateSubjectsView() {
-                const activeSection = AppData.sections.find(s => s.id === this.state.selectedSectionId) || AppData.sections[0];
-                const isGulfSection = activeSection.id === 'sec_gulf';
-                const activeCountry = isGulfSection ? AppData.gulfCountries.find(c => c.id === this.state.selectedGulfCountry) : null;
-                const activeStage = AppData.stages.find(s => s.id === this.state.selectedStageId) || AppData.stages[2];
-                const activeGrade = activeStage.grades.find(g => g.id === this.state.selectedGradeId) || activeStage.grades[2];
-
-                const categories = [
-                    { id: 'all', name: 'جميع المواد' },
-                    { id: 'grammar', name: 'النحو والإنشاء' },
-                    { id: 'rhetoric', name: 'البلاغة' },
-                    { id: 'literature', name: 'الأدب والدراسات' },
-                    { id: 'texts', name: 'النصوص والشعر' },
-                    { id: 'reading', name: 'القراءة' }
-                ];
-
-                const filteredSubjects = this.state.activeSubjectCategory === 'all' 
-                    ? AppData.subjects 
-                    : AppData.subjects.filter(s => s.category === this.state.activeSubjectCategory);
-
-                return `
-                    <section class="py-5 min-h-[60vh]">
-                        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-                            
-                            <!-- BREADCRUMBS -->
-                            <nav class="mb-3 overflow-x-auto no-scrollbar">
-                                <ol class="flex items-center gap-1.5 text-xs font-bold opacity-75 whitespace-nowrap">
-                                    <li>
-                                        <button onclick="app.navigate('home')" class="hover:text-tier-accent flex items-center gap-1 transition">
-                                            <i class="fa-solid fa-house text-[10px]"></i>
-                                            <span>الرئيسية</span>
-                                        </button>
-                                    </li>
-                                    <li class="opacity-40">/</li>
-                                    <li>
-                                        <button onclick="app.navigate('grades', { section: '${activeSection.id}', stage: null, grade: null })" class="hover:text-tier-accent transition">
-                                            ${activeSection.title}
-                                        </button>
-                                    </li>
-                                    ${isGulfSection && activeCountry ? `
-                                        <li class="opacity-40">/</li>
-                                        <li class="text-amber-600 font-extrabold">${activeCountry.name}</li>
-                                    ` : ''}
-                                    <li class="opacity-40">/</li>
-                                    <li>
-                                        <button onclick="app.navigate('grades', { section: '${activeSection.id}', stage: '${activeStage.id}', grade: null })" class="hover:text-tier-accent transition">
-                                            ${activeStage.name}
-                                        </button>
-                                    </li>
-                                    <li class="opacity-40">/</li>
-                                    <li class="text-tier-accent font-extrabold">${activeGrade.name}</li>
-                                </ol>
-                            </nav>
-
-                            <!-- BANNER HEADER -->
-                            <div class="bg-gradient-to-r from-teal-800 via-teal-900 to-slate-900 rounded-xl p-4 text-white shadow-xs mb-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-                                <div>
-                                    <span class="inline-block px-2.5 py-0.5 rounded bg-white/10 text-[10px] font-bold mb-1 border border-white/10">
-                                        ${activeSection.title} ${activeCountry ? `• ${activeCountry.name}` : ''} • ${activeStage.name}
-                                    </span>
-                                    <h1 class="text-xl sm:text-2xl font-black tracking-tight leading-tight">
-                                        مقررات ${activeGrade.name}
-                                    </h1>
-                                    <p class="text-xs font-medium opacity-80 mt-1">
-                                        استعرض المواد والمناهج المقررة وبطاقات المراجعة الشاملة.
-                                    </p>
-                                </div>
-
-                                <button onclick="app.navigate('grades', { section: '${activeSection.id}', stage: '${activeStage.id}', grade: null })" class="btn-hover-effect px-3.5 py-1.5 rounded-lg bg-white text-teal-900 hover:bg-sky-50 font-bold text-xs flex items-center gap-1.5 shadow-xs">
-                                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                                    <span>تغيير الصف</span>
-                                </button>
-                            </div>
-
-                            <!-- FILTER TABS -->
-                            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 mb-4">
-                                ${categories.map(cat => `
-                                    <button onclick="app.filterCategory('${cat.id}')" 
-                                            class="px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${this.state.activeSubjectCategory === cat.id ? 'bg-tier-accent text-white shadow-xs' : 'tier-surface hover:bg-white'}">
-                                        ${cat.name}
-                                    </button>
-                                `).join('')}
-                            </div>
-
-                            <!-- SUBJECTS GRID -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
-                                ${filteredSubjects.map(sub => `
-                                    <div class="section-card rounded-xl p-4 flex flex-col justify-between shadow-xs">
-                                        <div>
-                                            <div class="flex items-center justify-between mb-3">
-                                                <div class="w-8 h-8 rounded-lg bg-gradient-to-br ${sub.color} flex items-center justify-center text-white text-sm shadow-xs">
-                                                    <i class="fa-solid ${sub.icon}"></i>
-                                                </div>
-                                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-white/80 dark:bg-slate-800 opacity-80 text-teal-800 dark:text-teal-300">
-                                                    ${sub.badge}
-                                                </span>
-                                            </div>
-
-                                            <h3 class="text-base font-bold mb-1">
-                                                ${sub.name}
-                                            </h3>
-
-                                            <p class="opacity-75 text-xs leading-relaxed mb-4 font-medium">
-                                                ${sub.description}
-                                            </p>
-                                        </div>
-
-                                        <div>
-                                            <div class="mb-3 pt-3 border-t border-sky-100/50 dark:border-slate-800">
-                                                <div class="flex items-center justify-between text-[11px] font-bold mb-1">
-                                                    <span class="opacity-60">نسبة الإنجاز</span>
-                                                    <span class="text-tier-accent">${sub.progress}%</span>
-                                                </div>
-                                                <div class="w-full h-1.5 rounded-full bg-sky-100/80 dark:bg-slate-800 overflow-hidden">
-                                                    <div class="h-full bg-tier-accent rounded-full" style="width: ${sub.progress}%"></div>
-                                                </div>
-                                            </div>
-
-                                            <button onclick="app.showToast('تم فتح مادة: ${sub.name}', 'المحتوى متاح في خطوة المراجعة')" class="btn-hover-effect w-full py-1.5 rounded-lg bg-sky-50/80 dark:bg-slate-800 hover:bg-tier-accent hover:text-white font-bold text-xs transition-colors flex items-center justify-center gap-1 border border-sky-100 dark:border-slate-700">
-                                                <span>دخول المادة</span>
-                                                <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-
-                        </div>
-                    </section>
-                `;
-            }
-
-            templatePlaceholder(title) {
-                const titles = {
-                    'review': 'قسم المراجعة التفاعلية',
-                    'quizzes': 'نظام الاختبارات',
-                    'dashboard': 'لوحة الطالب'
-                };
-
-                return `
-                    <section class="py-12 text-center">
-                        <div class="max-w-md mx-auto px-4">
-                            <div class="w-10 h-10 tier-surface opacity-80 rounded-lg flex items-center justify-center mx-auto text-lg mb-3 shadow-xs">
-                                <i class="fa-solid fa-hourglass-half"></i>
-                            </div>
-                            <h2 class="text-xl font-black mb-1">${titles[title] || 'الصفحة'}</h2>
-                            <p class="opacity-60 text-xs mb-4">هذه الواجهة مجهزة وجاهزة لبناء المحتوى.</p>
-                            <button onclick="app.navigate('home')" class="btn-hover-effect px-4 py-1.5 bg-tier-accent text-white rounded-lg font-bold text-xs shadow-xs">
-                                العودة للرئيسية
-                            </button>
-                        </div>
-                    </section>
-                `;
+            if (!('grade' in params)) {
+                this.state.selectedGradeId = null;
             }
         }
 
-        const app = new PlatformApp();
-        document.addEventListener('DOMContentLoaded', () => app.init());
-    </script>
+        if ('grade' in params && params.grade) {
+            this.state.selectedGradeId = params.grade;
+        }
+
+        if ('subject' in params && params.subject) {
+            this.state.selectedSubjectId = params.subject;
+        }
+
+        if ('lesson' in params && params.lesson) {
+            this.state.selectedLessonId = params.lesson;
+        }
+
+        this.state.currentView = view;
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+        this.render();
+    },
+
+
+    render() {
+
+        const app = document.getElementById('app-view');
+
+        let html = '';
+
+        switch (this.state.currentView) {
+
+            case 'home':
+                html = this.templateHome();
+                break;
+
+            case 'grades':
+                html = this.templateGradesView();
+                break;
+
+            case 'subjects':
+                html = this.templateSubjectsView();
+                break;
+
+            case 'subject':
+                html = this.templateSubjectView();
+                break;
+
+            case 'lesson':
+                html = this.templateLessonView();
+                break;
+
+            case 'review':
+                html = this.templatePlaceholder(
+                    'المراجعة',
+                    'راجع ما تعلمته واختبر مدى تقدمك.'
+                );
+                break;
+
+            case 'quizzes':
+                html = this.templatePlaceholder(
+                    'الاختبارات',
+                    'اختبارات تفاعلية لكل مادة ومرحلة.'
+                );
+                break;
+
+            case 'dashboard':
+                html = this.templatePlaceholder(
+                    'لوحة الطالب',
+                    'هنا ستجد تقدمك ودروسك واختباراتك.'
+                );
+                break;
+
+            default:
+                html = this.templateHome();
+        }
+
+        app.innerHTML = `<div class="fade-in">${html}</div>`;
+    },
+
+
+    templateHome() {
+
+        return `
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 lg:pt-16">
+
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+                <div class="text-center lg:text-right">
+
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-tier-accent mb-6">
+                        <i class="fa-solid fa-sparkles"></i>
+                        <span>تعلم العربية بطريقة مختلفة</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                        منصة العربي
+                        <span class="gradient-text">التعليمية</span>
+                    </h1>
+
+                    <p class="text-xl sm:text-2xl mt-3 font-bold text-slate-600 dark:text-slate-300">
+                        الإبريز اللغوي
+                    </p>
+
+                    <p class="mt-6 text-lg leading-9 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto lg:mx-0">
+                        منصة تعليمية متكاملة تساعد الطالب على الوصول إلى
+                        الصفوف والمواد والدروس والمراجعات في مكان واحد،
+                        بطريقة واضحة وسهلة وتفاعلية.
+                    </p>
+
+                    <div class="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
+
+                        <button
+                            onclick="PlatformApp.navigate('grades')"
+                            class="px-7 py-3.5 rounded-2xl bg-tier-accent text-white hover:bg-tier-accentHover transition shadow-lg flex items-center gap-3">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            استكشف الصفوف
+                        </button>
+
+                        <button
+                            onclick="PlatformApp.navigate('subjects', {
+                                section: 'sec_edu',
+                                stage: 'stage_sec',
+                                grade: 'g_s3'
+                            })"
+                            class="px-7 py-3.5 rounded-2xl glass hover:text-tier-accent transition flex items-center gap-3">
+                            <i class="fa-solid fa-book-open"></i>
+                            تصفح المواد
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="relative">
+
+                    <div class="absolute -top-8 -right-8 w-32 h-32 bg-teal-300/30 dark:bg-teal-500/10 rounded-full blur-3xl"></div>
+
+                    <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-sky-300/30 dark:bg-sky-500/10 rounded-full blur-3xl"></div>
+
+                    <div class="glass rounded-[2rem] p-6 sm:p-8 relative">
+
+                        <div class="grid grid-cols-2 gap-4">
+
+                            <div class="glass rounded-2xl p-5">
+                                <div class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-900/30 text-tier-accent flex items-center justify-center mb-4">
+                                    <i class="fa-solid fa-school"></i>
+                                </div>
+                                <div class="text-2xl font-bold">3</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">
+                                    مراحل تعليمية
+                                </div>
+                            </div>
+
+                            <div class="glass rounded-2xl p-5">
+                                <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-900/30 text-tier-skyAccent flex items-center justify-center mb-4">
+                                    <i class="fa-solid fa-book"></i>
+                                </div>
+                                <div class="text-2xl font-bold">5</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">
+                                    مواد رئيسية
+                                </div>
+                            </div>
+
+                            <div class="glass rounded-2xl p-5">
+                                <div class="w-12 h-12 rounded-xl bg-violet-100 dark:bg-violet-900/30 text-violet-600 flex items-center justify-center mb-4">
+                                    <i class="fa-solid fa-video"></i>
+                                </div>
+                                <div class="text-2xl font-bold">50+</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">
+                                    درسًا تعليميًا
+                                </div>
+                            </div>
+
+                            <div class="glass rounded-2xl p-5">
+                                <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 text-amber-600 flex items-center justify-center mb-4">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </div>
+                                <div class="text-2xl font-bold">∞</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">
+                                    تدريبات قادمة
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="mt-20">
+
+                <div class="text-center mb-10">
+
+                    <span class="text-tier-accent font-bold">
+                        أقسام المنصة
+                    </span>
+
+                    <h2 class="text-3xl sm:text-4xl font-bold mt-2">
+                        اختر مسارك التعليمي
+                    </h2>
+
+                    <p class="mt-3 text-slate-600 dark:text-slate-400">
+                        ابدأ من القسم المناسب لك للوصول إلى الصفوف والمواد والدروس.
+                    </p>
+
+                </div>
+
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+                    ${AppData.sections.map(section => `
+
+                        <button
+                            onclick="PlatformApp.navigate('grades', {
+                                section: '${section.id}'
+                            })"
+                            class="glass hover-card rounded-3xl p-6 text-right group">
+
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-100 to-sky-100 dark:from-teal-900/30 dark:to-sky-900/30 text-tier-accent flex items-center justify-center mb-5">
+                                <i class="fa-solid ${section.icon} text-xl"></i>
+                            </div>
+
+                            <span class="text-xs text-tier-accent font-bold">
+                                ${section.badge}
+                            </span>
+
+                            <h3 class="text-xl font-bold mt-2 group-hover:text-tier-accent transition">
+                                ${section.title}
+                            </h3>
+
+                            <p class="text-sm leading-7 text-slate-600 dark:text-slate-400 mt-3">
+                                ${section.desc}
+                            </p>
+
+                            <div class="mt-5 flex items-center gap-2 text-tier-accent font-bold">
+                                استكشف القسم
+                                <i class="fa-solid fa-arrow-left transition group-hover:-translate-x-1"></i>
+                            </div>
+
+                        </button>
+
+                    `).join('')}
+
+                </div>
+
+            </div>
+
+        </section>
+        `;
+    },
+
+
+    templateBreadcrumb(items) {
+
+        return `
+            <div class="flex flex-wrap items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
+
+                <button
+                    onclick="PlatformApp.navigate('home')"
+                    class="hover:text-tier-accent">
+                    الرئيسية
+                </button>
+
+                ${items.map((item, index) => {
+
+                    const isLast = index === items.length - 1;
+
+                    return `
+                        <i class="fa-solid fa-chevron-left text-xs opacity-50"></i>
+
+                        ${
+                            isLast
+                            ? `<span class="text-slate-700 dark:text-slate-200 font-bold">${item}</span>`
+                            : `<span>${item}</span>`
+                        }
+                    `;
+
+                }).join('')}
+
+            </div>
+        `;
+    },
+
+
+    templateGradesView() {
+
+        const section =
+            AppData.sections.find(s => s.id === this.state.selectedSectionId)
+            || AppData.sections[0];
+
+        const activeStage =
+            AppData.stages.find(s => s.id === this.state.selectedStageId)
+            || AppData.stages[2];
+
+        return `
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+            ${this.templateBreadcrumb([
+                section.title,
+                'الصفوف'
+            ])}
+
+
+            <div class="glass rounded-[2rem] p-6 sm:p-8 mb-8">
+
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+
+                    <div>
+
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-50 dark:bg-teal-900/20 text-tier-accent text-sm font-bold">
+                            <i class="fa-solid ${section.icon}"></i>
+                            ${section.badge}
+                        </div>
+
+                        <h1 class="text-3xl sm:text-4xl font-bold mt-4">
+                            ${section.title}
+                        </h1>
+
+                        <p class="mt-2 text-slate-600 dark:text-slate-400">
+                            اختر المرحلة التعليمية ثم الصف للوصول إلى المواد.
+                        </p>
+
+                    </div>
+
+                    <button
+                        onclick="PlatformApp.navigate('home')"
+                        class="px-5 py-3 rounded-xl glass hover:text-tier-accent">
+                        <i class="fa-solid fa-house ml-2"></i>
+                        الرئيسية
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            ${
+                section.id === 'sec_gulf'
+                ? `
+
+                <div class="mb-10">
+
+                    <h2 class="text-2xl font-bold mb-5">
+                        اختر الدولة
+                    </h2>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+                        ${AppData.gulfCountries.map(country => {
+
+                            const active =
+                                this.state.selectedGulfCountry === country.id;
+
+                            return `
+                                <button
+                                    onclick="PlatformApp.navigate('grades', {
+                                        country: '${country.id}'
+                                    })"
+                                    class="p-5 rounded-2xl border transition
+                                    ${active
+                                        ? 'bg-tier-accent text-white border-tier-accent shadow-lg'
+                                        : 'glass border-white/50 dark:border-white/10 hover:border-tier-accent'
+                                    }">
+
+                                    <i class="fa-solid ${country.icon} text-xl mb-2"></i>
+
+                                    <div class="font-bold">
+                                        ${country.title}
+                                    </div>
+
+                                </button>
+                            `;
+
+                        }).join('')}
+
+                    </div>
+
+                </div>
+                `
+                : ''
+            }
+
+
+            <div class="mb-7">
+
+                <h2 class="text-2xl font-bold">
+                    المراحل التعليمية
+                </h2>
+
+                <p class="text-slate-500 dark:text-slate-400 mt-2">
+                    اختر المرحلة التي تريد الدراسة فيها.
+                </p>
+
+            </div>
+
+
+            <div class="grid md:grid-cols-3 gap-5 mb-12">
+
+                ${AppData.stages.map(stage => {
+
+                    const active = stage.id === activeStage.id;
+
+                    return `
+
+                        <button
+                            onclick="PlatformApp.navigate('grades', {
+                                stage: '${stage.id}'
+                            })"
+                            class="glass hover-card rounded-3xl p-6 text-right border
+                            ${active ? 'border-tier-accent ring-2 ring-teal-200 dark:ring-teal-900/30' : 'border-transparent'}">
+
+                            <div class="flex items-center justify-between">
+
+                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-100 to-sky-100 dark:from-teal-900/30 dark:to-sky-900/30 text-tier-accent flex items-center justify-center">
+                                    <i class="fa-solid ${stage.icon} text-xl"></i>
+                                </div>
+
+                                ${
+                                    active
+                                    ? `<span class="text-xs font-bold text-tier-accent">مختارة</span>`
+                                    : ''
+                                }
+
+                            </div>
+
+                            <h3 class="text-xl font-bold mt-5">
+                                ${stage.title}
+                            </h3>
+
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                                ${stage.subtitle}
+                            </p>
+
+                        </button>
+
+                    `;
+
+                }).join('')}
+
+            </div>
+
+
+            <div class="mb-7">
+
+                <h2 class="text-2xl font-bold">
+                    ${activeStage.title}
+                </h2>
+
+                <p class="text-slate-500 dark:text-slate-400 mt-2">
+                    اختر الصف للوصول إلى المواد الدراسية.
+                </p>
+
+            </div>
+
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                ${activeStage.grades.map((grade, index) => `
+
+                    <button
+                        onclick="PlatformApp.navigate('subjects', {
+                            section: '${section.id}',
+                            stage: '${activeStage.id}',
+                            grade: '${grade.id}'
+                        })"
+                        class="glass hover-card rounded-3xl p-6 text-right group">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-100 to-sky-100 dark:from-teal-900/30 dark:to-sky-900/30 text-tier-accent flex items-center justify-center font-bold text-xl">
+                                ${index + 1}
+                            </div>
+
+                            <i class="fa-solid fa-arrow-left text-slate-400 group-hover:text-tier-accent group-hover:-translate-x-1 transition"></i>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold mt-5 group-hover:text-tier-accent transition">
+                            ${grade.title}
+                        </h3>
+
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                            عرض المواد الدراسية
+                        </p>
+
+                    </button>
+
+                `).join('')}
+
+            </div>
+
+        </section>
+        `;
+    },
+
+
+    templateSubjectsView() {
+
+        const section =
+            AppData.sections.find(s => s.id === this.state.selectedSectionId)
+            || AppData.sections[0];
+
+        const activeStage =
+            AppData.stages.find(s => s.id === this.state.selectedStageId)
+            || AppData.stages[2];
+
+        const activeGrade =
+            activeStage.grades.find(g => g.id === this.state.selectedGradeId)
+            || activeStage.grades[activeStage.grades.length - 1];
+
+        let subjects = AppData.subjects;
+
+        if (this.state.activeSubjectCategory !== 'all') {
+            subjects = subjects.filter(
+                subject => subject.category === this.state.activeSubjectCategory
+            );
+        }
+
+        return `
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+            ${this.templateBreadcrumb([
+                section.title,
+                activeStage.title,
+                activeGrade.title,
+                'المواد'
+            ])}
+
+
+            <div class="glass rounded-[2rem] p-6 sm:p-8 mb-8">
+
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+
+                    <div>
+
+                        <div class="text-sm font-bold text-tier-accent">
+                            ${section.title}
+                        </div>
+
+                        <h1 class="text-3xl sm:text-4xl font-bold mt-2">
+                            ${activeGrade.title}
+                        </h1>
+
+                        <p class="mt-3 text-slate-600 dark:text-slate-400">
+                            اختر المادة لعرض محتواها والدروس الخاصة بها.
+                        </p>
+
+                    </div>
+
+                    <button
+                        onclick="PlatformApp.navigate('grades', {
+                            section: '${section.id}',
+                            stage: '${activeStage.id}'
+                        })"
+                        class="px-5 py-3 rounded-xl glass hover:text-tier-accent">
+                        <i class="fa-solid fa-arrow-right ml-2"></i>
+                        تغيير الصف
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="flex flex-wrap gap-3 mb-8">
+
+                ${[
+                    ['all', 'الكل'],
+                    ['grammar', 'النحو'],
+                    ['rhetoric', 'البلاغة'],
+                    ['literature', 'الأدب'],
+                    ['texts', 'النصوص'],
+                    ['reading', 'القراءة']
+                ].map(tab => {
+
+                    const active =
+                        this.state.activeSubjectCategory === tab[0];
+
+                    return `
+                        <button
+                            onclick="PlatformApp.state.activeSubjectCategory='${tab[0]}'; PlatformApp.render()"
+                            class="px-5 py-2.5 rounded-xl transition
+                            ${active
+                                ? 'bg-tier-accent text-white shadow-md'
+                                : 'glass hover:text-tier-accent'
+                            }">
+                            ${tab[1]}
+                        </button>
+                    `;
+
+                }).join('')}
+
+            </div>
+
+
+            <div class="grid md:grid-cols-2 gap-5">
+
+                ${subjects.map(subject => `
+
+                    <div class="glass hover-card rounded-3xl p-6">
+
+                        <div class="flex items-start gap-4">
+
+                            <div class="subject-icon shrink-0">
+                                <i class="fa-solid ${subject.icon} text-xl"></i>
+                            </div>
+
+                            <div class="flex-1">
+
+                                <div class="flex items-start justify-between gap-3">
+
+                                    <div>
+
+                                        <h2 class="text-xl font-bold">
+                                            ${subject.title}
+                                        </h2>
+
+                                        <p class="text-sm leading-7 text-slate-500 dark:text-slate-400 mt-2">
+                                            ${subject.desc}
+                                        </p>
+
+                                    </div>
+
+                                    <span class="shrink-0 text-xs font-bold px-3 py-1.5 rounded-full bg-teal-50 dark:bg-teal-900/20 text-tier-accent">
+                                        ${subject.lessons} درس
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="mt-6">
+
+                            <div class="flex items-center justify-between text-sm mb-2">
+
+                                <span class="text-slate-500 dark:text-slate-400">
+                                    التقدم
+                                </span>
+
+                                <span class="font-bold text-tier-accent">
+                                    ${subject.progress}%
+                                </span>
+
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width:${subject.progress}%">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="mt-6 flex justify-end">
+
+                            <button
+                                onclick="PlatformApp.navigate('subject', {
+                                    section: '${section.id}',
+                                    stage: '${activeStage.id}',
+                                    grade: '${activeGrade.id}',
+                                    subject: '${subject.id}'
+                                })"
+                                class="px-5 py-3 rounded-xl bg-tier-accent text-white hover:bg-tier-accentHover transition flex items-center gap-2">
+
+                                دخول المادة
+
+                                <i class="fa-solid fa-arrow-left"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `).join('')}
+
+            </div>
+
+        </section>
+        `;
+    },
+
+
+    templateSubjectView() {
+
+        const section =
+            AppData.sections.find(s => s.id === this.state.selectedSectionId)
+            || AppData.sections[0];
+
+        const activeStage =
+            AppData.stages.find(s => s.id === this.state.selectedStageId)
+            || AppData.stages[2];
+
+        const activeGrade =
+            activeStage.grades.find(g => g.id === this.state.selectedGradeId)
+            || activeStage.grades[activeStage.grades.length - 1];
+
+        const subject =
+            AppData.subjects.find(
+                s => s.id === this.state.selectedSubjectId
+            )
+            || AppData.subjects[0];
+
+        const lessons =
+            AppData.lessons[subject.id]
+            || [];
+
+        const displayedLessons =
+            lessons.length > 0
+            ? lessons
+            : Array.from(
+                { length: subject.lessons },
+                (_, i) => ({
+                    id: `${subject.id}_lesson_${i + 1}`,
+                    title: `الدرس ${i + 1}`,
+                    duration: '30 دقيقة',
+                    desc: 'سيتم إضافة محتوى هذا الدرس قريبًا.'
+                })
+            );
+
+        return `
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+            ${this.templateBreadcrumb([
+                section.title,
+                activeStage.title,
+                activeGrade.title,
+                subject.title
+            ])}
+
+
+            <div class="glass rounded-[2rem] p-6 sm:p-8 mb-8">
+
+                <div class="flex flex-col lg:flex-row items-start justify-between gap-8">
+
+                    <div class="flex items-start gap-5">
+
+                        <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-tier-accent to-tier-skyAccent text-white flex items-center justify-center shrink-0 shadow-lg">
+                            <i class="fa-solid ${subject.icon} text-3xl"></i>
+                        </div>
+
+                        <div>
+
+                            <span class="text-sm font-bold text-tier-accent">
+                                ${activeGrade.title}
+                            </span>
+
+                            <h1 class="text-3xl sm:text-4xl font-bold mt-2">
+                                ${subject.title}
+                            </h1>
+
+                            <p class="mt-3 text-slate-600 dark:text-slate-400 leading-8 max-w-3xl">
+                                ${subject.desc}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        onclick="PlatformApp.navigate('subjects', {
+                            section: '${section.id}',
+                            stage: '${activeStage.id}',
+                            grade: '${activeGrade.id}'
+                        })"
+                        class="px-5 py-3 rounded-xl glass hover:text-tier-accent shrink-0">
+
+                        <i class="fa-solid fa-arrow-right ml-2"></i>
+
+                        العودة للمواد
+
+                    </button>
+
+                </div>
+
+
+                <div class="mt-8 grid sm:grid-cols-3 gap-4">
+
+                    <div class="glass rounded-2xl p-5">
+
+                        <div class="text-sm text-slate-500 dark:text-slate-400">
+                            عدد الدروس
+                        </div>
+
+                        <div class="text-3xl font-bold mt-1">
+                            ${subject.lessons}
+                        </div>
+
+                    </div>
+
+                    <div class="glass rounded-2xl p-5">
+
+                        <div class="text-sm text-slate-500 dark:text-slate-400">
+                            نسبة الإنجاز
+                        </div>
+
+                        <div class="text-3xl font-bold text-tier-accent mt-1">
+                            ${subject.progress}%
+                        </div>
+
+                    </div>
+
+                    <div class="glass rounded-2xl p-5">
+
+                        <div class="text-sm text-slate-500 dark:text-slate-400">
+                            المستوى
+                        </div>
+
+                        <div class="text-xl font-bold mt-2">
+                            ${subject.progress >= 75 ? 'متقدم' : subject.progress >= 40 ? 'متوسط' : 'بداية الطريق'}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="flex items-end justify-between gap-4 mb-6">
+
+                <div>
+
+                    <span class="text-tier-accent font-bold">
+                        محتوى المادة
+                    </span>
+
+                    <h2 class="text-3xl font-bold mt-1">
+                        الدروس
+                    </h2>
+
+                </div>
+
+                <span class="text-sm text-slate-500 dark:text-slate-400">
+                    ${displayedLessons.length} دروس متاحة حاليًا
+                </span>
+
+            </div>
+
+
+            <div class="space-y-4">
+
+                ${displayedLessons.map((lesson, index) => `
+
+                    <div class="glass hover-card rounded-3xl p-5 sm:p-6">
+
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-5">
+
+                            <div class="lesson-number">
+                                ${index + 1}
+                            </div>
+
+                            <div class="flex-1">
+
+                                <div class="flex flex-wrap items-center gap-3">
+
+                                    <h3 class="text-xl font-bold">
+                                        ${lesson.title}
+                                    </h3>
+
+                                    <span class="text-xs px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">
+                                        <i class="fa-regular fa-clock ml-1"></i>
+                                        ${lesson.duration}
+                                    </span>
+
+                                </div>
+
+                                <p class="text-sm leading-7 text-slate-500 dark:text-slate-400 mt-2">
+                                    ${lesson.desc}
+                                </p>
+
+                            </div>
+
+                            <button
+                                onclick="PlatformApp.navigate('lesson', {
+                                    section: '${section.id}',
+                                    stage: '${activeStage.id}',
+                                    grade: '${activeGrade.id}',
+                                    subject: '${subject.id}',
+                                    lesson: '${lesson.id}'
+                                })"
+                                class="px-5 py-3 rounded-xl bg-tier-accent text-white hover:bg-tier-accentHover transition shrink-0">
+
+                                <i class="fa-solid fa-play ml-2"></i>
+
+                                ابدأ الدرس
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `).join('')}
+
+            </div>
+
+        </section>
+        `;
+    },
+
+
+    templateLessonView() {
+
+        const section =
+            AppData.sections.find(s => s.id === this.state.selectedSectionId)
+            || AppData.sections[0];
+
+        const activeStage =
+            AppData.stages.find(s => s.id === this.state.selectedStageId)
+            || AppData.stages[2];
+
+        const activeGrade =
+            activeStage.grades.find(g => g.id === this.state.selectedGradeId)
+            || activeStage.grades[activeStage.grades.length - 1];
+
+        const subject =
+            AppData.subjects.find(
+                s => s.id === this.state.selectedSubjectId
+            )
+            || AppData.subjects[0];
+
+        const lessons =
+            AppData.lessons[subject.id]
+            || [];
+
+        const lesson =
+            lessons.find(
+                l => l.id === this.state.selectedLessonId
+            )
+            || lessons[0]
+            || {
+                id: 'default',
+                title: 'الدرس',
+                duration: '30 دقيقة',
+                desc: 'سيتم إضافة محتوى هذا الدرس قريبًا.'
+            };
+
+        return `
+
+        <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+            ${this.templateBreadcrumb([
+                section.title,
+                activeStage.title,
+                activeGrade.title,
+                subject.title,
+                lesson.title
+            ])}
+
+
+            <div class="glass rounded-[2rem] overflow-hidden">
+
+                <div class="bg-gradient-to-br from-tier-accent to-tier-skyAccent p-8 sm:p-12 text-white">
+
+                    <div class="flex items-center gap-3 text-white/80 text-sm mb-5">
+
+                        <i class="fa-solid ${subject.icon}"></i>
+
+                        <span>
+                            ${subject.title}
+                        </span>
+
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+
+                        <span>
+                            الدرس
+                        </span>
+
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl font-bold">
+                        ${lesson.title}
+                    </h1>
+
+                    <p class="mt-5 text-lg text-white/85 leading-9">
+                        ${lesson.desc}
+                    </p>
+
+                </div>
+
+
+                <div class="p-6 sm:p-10">
+
+                    <div class="grid sm:grid-cols-2 gap-4 mb-8">
+
+                        <div class="glass rounded-2xl p-5">
+
+                            <div class="text-sm text-slate-500 dark:text-slate-400">
+                                الصف
+                            </div>
+
+                            <div class="font-bold text-lg mt-1">
+                                ${activeGrade.title}
+                            </div>
+
+                        </div>
+
+                        <div class="glass rounded-2xl p-5">
+
+                            <div class="text-sm text-slate-500 dark:text-slate-400">
+                                مدة الدرس
+                            </div>
+
+                            <div class="font-bold text-lg mt-1">
+                                ${lesson.duration}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 p-8 sm:p-12 text-center">
+
+                        <div class="w-20 h-20 rounded-3xl bg-teal-50 dark:bg-teal-900/20 text-tier-accent flex items-center justify-center mx-auto mb-6">
+
+                            <i class="fa-solid fa-book-open text-3xl"></i>
+
+                        </div>
+
+                        <h2 class="text-2xl font-bold">
+                            محتوى الدرس
+                        </h2>
+
+                        <p class="mt-4 text-slate-500 dark:text-slate-400 leading-8 max-w-2xl mx-auto">
+                            هذه هي صفحة الدرس الفعلية.
+                            في الخطوة القادمة يمكننا إضافة شرح الدرس،
+                            الفيديو، الأمثلة، التدريبات، والأسئلة التفاعلية
+                            داخل هذه الصفحة.
+                        </p>
+
+                        <div class="mt-8 flex flex-wrap justify-center gap-3">
+
+                            <button
+                                onclick="PlatformApp.showToast('سيتم إضافة الفيديو التعليمي في المرحلة القادمة')"
+                                class="px-6 py-3 rounded-xl bg-tier-accent text-white hover:bg-tier-accentHover transition">
+
+                                <i class="fa-solid fa-play ml-2"></i>
+                                تشغيل الفيديو
+
+                            </button>
+
+                            <button
+                                onclick="PlatformApp.showToast('سيتم إضافة التدريبات التفاعلية في المرحلة القادمة')"
+                                class="px-6 py-3 rounded-xl glass hover:text-tier-accent transition">
+
+                                <i class="fa-solid fa-pen-to-square ml-2"></i>
+                                تدريبات الدرس
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="mt-8 flex flex-col sm:flex-row justify-between gap-3">
+
+                        <button
+                            onclick="PlatformApp.navigate('subject', {
+                                section: '${section.id}',
+                                stage: '${activeStage.id}',
+                                grade: '${activeGrade.id}',
+                                subject: '${subject.id}'
+                            })"
+                            class="px-5 py-3 rounded-xl glass hover:text-tier-accent transition">
+
+                            <i class="fa-solid fa-arrow-right ml-2"></i>
+                            العودة إلى دروس المادة
+
+                        </button>
+
+                        <button
+                            onclick="PlatformApp.navigate('subjects', {
+                                section: '${section.id}',
+                                stage: '${activeStage.id}',
+                                grade: '${activeGrade.id}'
+                            })"
+                            class="px-5 py-3 rounded-xl glass hover:text-tier-accent transition">
+
+                            جميع المواد
+                            <i class="fa-solid fa-arrow-left mr-2"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+        `;
+    },
+
+
+    templatePlaceholder(title, description) {
+
+        return `
+
+        <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+
+            <div class="glass rounded-[2rem] p-10 sm:p-16 text-center">
+
+                <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-teal-100 to-sky-100 dark:from-teal-900/30 dark:to-sky-900/30 text-tier-accent flex items-center justify-center mx-auto">
+
+                    <i class="fa-solid fa-screwdriver-wrench text-3xl"></i>
+
+                </div>
+
+                <h1 class="text-4xl font-bold mt-7">
+                    ${title}
+                </h1>
+
+                <p class="text-lg text-slate-500 dark:text-slate-400 mt-4">
+                    ${description}
+                </p>
+
+                <div class="mt-7 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-teal-50 dark:bg-teal-900/20 text-tier-accent font-bold">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    هذه الواجهة مجهزة وجاهزة لبناء المحتوى.
+
+                </div>
+
+                <div class="mt-8">
+
+                    <button
+                        onclick="PlatformApp.navigate('home')"
+                        class="px-6 py-3 rounded-xl bg-tier-accent text-white hover:bg-tier-accentHover transition">
+
+                        <i class="fa-solid fa-house ml-2"></i>
+
+                        العودة للرئيسية
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+        `;
+    },
+
+
+    toggleDarkMode() {
+
+        document.documentElement.classList.toggle('dark');
+
+        const isDark =
+            document.documentElement.classList.contains('dark');
+
+        localStorage.setItem('arabic-platform-dark', isDark ? '1' : '0');
+
+        this.updateThemeIcon();
+    },
+
+
+    loadTheme() {
+
+        const saved =
+            localStorage.getItem('arabic-platform-dark');
+
+        if (saved === '1') {
+            document.documentElement.classList.add('dark');
+        }
+
+        this.updateThemeIcon();
+    },
+
+
+    updateThemeIcon() {
+
+        const icon =
+            document.getElementById('theme-icon');
+
+        if (!icon) return;
+
+        const isDark =
+            document.documentElement.classList.contains('dark');
+
+        icon.className =
+            isDark
+            ? 'fa-solid fa-sun'
+            : 'fa-solid fa-moon';
+    },
+
+
+    toggleMobileMenu() {
+
+        const menu =
+            document.getElementById('mobile-menu');
+
+        if (!menu) return;
+
+        menu.classList.toggle('hidden');
+    },
+
+
+    login() {
+
+        this.showToast(
+            'تسجيل الدخول سيتم تفعيله في المرحلة القادمة.',
+            'info'
+        );
+    },
+
+
+    showToast(message, type = 'success') {
+
+        const container =
+            document.getElementById('toast-container');
+
+        const toast =
+            document.createElement('div');
+
+        const icon =
+            type === 'info'
+            ? 'fa-circle-info'
+            : 'fa-circle-check';
+
+        toast.className =
+            'toast glass rounded-2xl px-5 py-4 min-w-[280px] max-w-[360px] flex items-center gap-3 shadow-xl';
+
+        toast.innerHTML = `
+
+            <div class="w-9 h-9 rounded-xl bg-teal-50 dark:bg-teal-900/20 text-tier-accent flex items-center justify-center shrink-0">
+                <i class="fa-solid ${icon}"></i>
+            </div>
+
+            <div class="text-sm leading-6">
+                ${message}
+            </div>
+
+        `;
+
+        container.appendChild(toast);
+
+        setTimeout(() => {
+
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(10px)';
+            toast.style.transition = '.3s ease';
+
+            setTimeout(() => toast.remove(), 300);
+
+        }, 3000);
+    }
+};
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    PlatformApp.init();
+
+});
+
+
+</script>
+
 </body>
 </html>
