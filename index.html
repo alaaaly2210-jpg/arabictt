@@ -576,37 +576,175 @@ const AppData = {
                 id: 'grammar_1',
                 title: 'الكلمة وأقسامها',
                 duration: '25 دقيقة',
-                desc: 'التعرف إلى الكلمة وأقسامها الثلاثة: الاسم والفعل والحرف.'
+                desc: 'التعرف إلى الكلمة وأقسامها الثلاثة: الاسم والفعل والحرف.',
+                videoPlaceholder: 'فيديو شرح درس الكلمة وأقسامها (متاح قريبًا)',
+                contentSections: [
+                    {
+                        type: 'intro',
+                        text: 'الكلمة في لغتنا العربية هي كل لفظ مفيد يدل على معنى مفرد. وتنقسم الكلمة بحسب دلالتها وأقسامها النحوية إلى ثلاثة أقسام رئيسية لا غنى عنها في بناء الجملة.'
+                    },
+                    {
+                        type: 'rule',
+                        title: 'قاعدة أساسية (أقسام الكلمة)',
+                        text: 'تتألف الكلمة العربية من ثلاثة أقسام: <strong>الاسم</strong>، و<strong>الفعل</strong>، و<strong>الحرف</strong>.'
+                    },
+                    {
+                        type: 'details',
+                        items: [
+                            '<strong>1. الاسم:</strong> كلمة تدل على مسمى محسوس أو معنوي، وليس الزمن جزءاً منه (مثل: محمد، شجره، علم، سعادة).',
+                            '<strong>2. الفعل:</strong> كلمة تدل على حدث مقترن بزمن معين، سواء كان ماضياً أو مضارعاً أو أمراً (مثل: كتبَ، يكتبُ، اُكتبْ).',
+                            '<strong>3. الحرف:</strong> كلمة لا يظهر معناها كاملًا إلا مع غيرها من الكلمات (مثل حروف الجر: من، في، أو حروف العطف: و، فـ).'
+                        ]
+                    },
+                    {
+                        type: 'examples',
+                        title: 'أمثلة توضيحية وتطبيقات',
+                        items: [
+                            '«<strong>فَهِمَ</strong> الطالبُ <strong>الدرسَ</strong> في <strong>الفصلِ</strong>» -> (فهم: فعل / الطالب: اسم / الدرس: اسم / في: حرف / الفصل: اسم).',
+                            '«<strong>يا</strong> <strong>محمدُ</strong>، <strong>اِجتهدْ</strong> في <strong>عملِكَ</strong>» -> (يا: حرف / محمد: اسم / اجتهد: فعل / في: حرف / عملك: اسم).'
+                        ]
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: 'في الجملة التالية: «كتبَ التلميذُ الدرسَ»، ما نوع كلمة «كتبَ»؟',
+                        options: ['اسم', 'فعل', 'حرف'],
+                        correctIndex: 1,
+                        explanation: 'كلمة «كتبَ» تدل على حدث في الزمن الماضي، فهي فعل.'
+                    },
+                    {
+                        id: 2,
+                        question: 'أي من الكلمات الآتية يُعد «حرفاً»؟',
+                        options: ['شجرة', 'يقرأ', 'على'],
+                        correctIndex: 2,
+                        explanation: '«على» حرف من حروف الجر، بينما شجرة اسم ويقرأ فعل.'
+                    },
+                    {
+                        id: 3,
+                        question: 'ما نوع كلمة «المدرسة» بحسب أقسام الكلمة؟',
+                        options: ['اسم', 'فعل', 'حرف'],
+                        correctIndex: 0,
+                        explanation: '«المدرسة» تبدأ بأل التعريف وتنتهي بالتاء المربوطة وتدل على مكان، فهي اسم.'
+                    }
+                ],
+                prevLessonId: null,
+                nextLessonId: 'grammar_2'
             },
             {
                 id: 'grammar_2',
                 title: 'علامات الاسم',
                 duration: '30 دقيقة',
-                desc: 'أهم العلامات التي تميز الاسم في الجملة العربية.'
+                desc: 'أهم العلامات التي تميز الاسم في الجملة العربية.',
+                videoPlaceholder: 'فيديو شرح درس علامات الاسم (متاح قريبًا)',
+                contentSections: [
+                    {
+                        type: 'intro',
+                        text: 'يتميز الاسم في اللغة العربية بعلامات خاصة تميزه عن الفعل والحرف، وتعيننا على معرفته وإعرابه بدقة.'
+                    },
+                    {
+                        type: 'rule',
+                        title: 'قاعدة أساسية (علامات الاسم الخمس)',
+                        text: 'يُعرف الاسم بقبوله واحدة من العلامات الآتية: <strong>الجر</strong>، <strong>التنوين</strong>، <strong>النداء</strong>، <strong>أل التعريف</strong>، أو <strong>الإسناد إليه</strong>.'
+                    },
+                    {
+                        type: 'details',
+                        items: [
+                            '<strong>1. الجر:</strong> دخول حرف الجر أو الإضافة (مثل: مررتُ بـ<u>زيدٍ</u>).',
+                            '<strong>2. التنوين:</strong> نون ساكنة تنطق ولا تُكتب (مثل: كتابٌ، كتاباً، كتابٍ).',
+                            '<strong>3. النداء:</strong> دخول حرف النداء عليه (مثل: يا <u>طالبُ</u>).',
+                            '<strong>4. أل التعريف:</strong> دخول (أل) في أوله (مثل: <u>ال</u>بيت).'
+                        ]
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: 'أي العلامات التالية تدل على أن كلمة «كتابٍ» اسم؟',
+                        options: ['التنوين والجر', 'دخول حرف العطف', 'دل على زمن مضى'],
+                        correctIndex: 0,
+                        explanation: 'الكلمة منونة ومجرورة، وهما من علامات الاسم الخالص.'
+                    }
+                ],
+                prevLessonId: 'grammar_1',
+                nextLessonId: 'grammar_3'
             },
             {
                 id: 'grammar_3',
                 title: 'علامات الفعل',
                 duration: '25 دقيقة',
-                desc: 'كيف نميز الفعل الماضي والمضارع والأمر.'
+                desc: 'كيف نميز الفعل الماضي والمضارع والأمر.',
+                videoPlaceholder: 'فيديو شرح درس علامات الفعل (متاح قريبًا)',
+                contentSections: [
+                    {
+                        type: 'intro',
+                        text: 'لكل نوع من أنواع الأفعال (الماضي، المضارع، الأمر) علامات خاصة به تميزه عن غيره.'
+                    },
+                    {
+                        type: 'rule',
+                        title: 'قاعدة أساسية',
+                        text: 'الفعل ما دل على حدث مقترن بزمن، ولكل قسم علامات تخصه.'
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: 'من علامات الفعل الماضي قبول تاء الفاعل مثل: (كتبتُ). هل هذه العبارة صحيحة؟',
+                        options: ['صحيحة', 'خاطئة'],
+                        correctIndex: 0,
+                        explanation: 'نعم، تاء الفاعل من أبرز علامات الفعل الماضي.'
+                    }
+                ],
+                prevLessonId: 'grammar_2',
+                nextLessonId: 'grammar_4'
             },
             {
                 id: 'grammar_4',
                 title: 'الجملة الاسمية',
                 duration: '35 دقيقة',
-                desc: 'المبتدأ والخبر وأنواعهما وأهم أحكامهما.'
+                desc: 'المبتدأ والخبر وأنواعهما وأهم أحكامهما.',
+                videoPlaceholder: 'فيديو شرح درس الجملة الاسمية (متاح قريبًا)',
+                contentSections: [
+                    {
+                        type: 'intro',
+                        text: 'الجملة الاسمية هي التي تبدأ باسم، وتتكون ركناها الأساسيان من المبتدأ والخبر.'
+                    }
+                ],
+                exercises: [],
+                prevLessonId: 'grammar_3',
+                nextLessonId: 'grammar_5'
             },
             {
                 id: 'grammar_5',
                 title: 'الجملة الفعلية',
                 duration: '35 دقيقة',
-                desc: 'الفعل والفاعل والمفعول به وبناء الجملة الفعلية.'
+                desc: 'الفعل والفاعل والمفعول به وبناء الجملة الفعلية.',
+                videoPlaceholder: 'فيديو شرح درس الجملة الفعلية (متاح قريبًا)',
+                contentSections: [
+                    {
+                        type: 'intro',
+                        text: 'الجملة الفعلية تبدأ بفعل، وركناها الأساسيان هما الفعل والفاعل.'
+                    }
+                ],
+                exercises: [],
+                prevLessonId: 'grammar_4',
+                nextLessonId: 'grammar_6'
             },
             {
                 id: 'grammar_6',
                 title: 'علامات الإعراب الأصلية',
                 duration: '30 دقيقة',
-                desc: 'الرفع والنصب والجر والجزم وعلاماتها الأصلية.'
+                desc: 'الرفع والنصب والجر والجزم وعلاماتها الأصلية.',
+                videoPlaceholder: 'فيديو شرح درس علامات الإعراب (متاح قريبًا)',
+                contentSections: [
+                    {
+                        type: 'intro',
+                        text: 'الإعراب هو تغير أواخر الكلم باختلاف العوامل الداخلة عليها.'
+                    }
+                ],
+                exercises: [],
+                prevLessonId: 'grammar_5',
+                nextLessonId: null
             }
         ],
 
@@ -615,31 +753,56 @@ const AppData = {
                 id: 'rhetoric_1',
                 title: 'مدخل إلى علم البلاغة',
                 duration: '25 دقيقة',
-                desc: 'مفهوم البلاغة وأهميتها في فهم النص العربي.'
+                desc: 'مفهوم البلاغة وأهميتها في فهم النص العربي.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'البلاغة مطابقة الكلام لمقتضى الحال.' }],
+                exercises: [],
+                prevLessonId: null,
+                nextLessonId: 'rhetoric_2'
             },
             {
                 id: 'rhetoric_2',
                 title: 'التشبيه',
                 duration: '30 دقيقة',
-                desc: 'أركان التشبيه وأنواعه وأثره في جمال التعبير.'
+                desc: 'أركان التشبيه وأنواعه وأثره في جمال التعبير.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'التشبيه بيان أن شيئاً مشاركاً لغيره في معنى.' }],
+                exercises: [],
+                prevLessonId: 'rhetoric_1',
+                nextLessonId: 'rhetoric_3'
             },
             {
                 id: 'rhetoric_3',
                 title: 'الاستعارة',
                 duration: '35 دقيقة',
-                desc: 'التعرف إلى الاستعارة المكنية والتصريحية.'
+                desc: 'التعرف إلى الاستعارة المكنية والتصريحية.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'الاستعارة تشبيه حذف أحد طرفيه.' }],
+                exercises: [],
+                prevLessonId: 'rhetoric_2',
+                nextLessonId: 'rhetoric_4'
             },
             {
                 id: 'rhetoric_4',
                 title: 'الكناية',
                 duration: '30 دقيقة',
-                desc: 'الكناية وأقسامها وكيفية اكتشافها في النص.'
+                desc: 'الكناية وأقسامها وكيفية اكتشافها في النص.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'الكناية لفظ أطلق وأريد به لازم معناه.' }],
+                exercises: [],
+                prevLessonId: 'rhetoric_3',
+                nextLessonId: 'rhetoric_5'
             },
             {
                 id: 'rhetoric_5',
                 title: 'المحسنات البديعية',
                 duration: '35 دقيقة',
-                desc: 'الجناس والطباق والمقابلة وأثرها الجمالي.'
+                desc: 'الجناس والطباق والمقابلة وأثرها الجمالي.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'المحسنات البديعية تحسين اللفظ أو المعنى.' }],
+                exercises: [],
+                prevLessonId: 'rhetoric_4',
+                nextLessonId: null
             }
         ],
 
@@ -648,25 +811,45 @@ const AppData = {
                 id: 'literature_1',
                 title: 'مدخل إلى الأدب العربي',
                 duration: '30 دقيقة',
-                desc: 'تعريف الأدب ومراحل تطوره عبر العصور.'
+                desc: 'تعريف الأدب ومراحل تطوره عبر العصور.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'الأدب هو الكلام البليغ المؤثر في النفوس.' }],
+                exercises: [],
+                prevLessonId: null,
+                nextLessonId: 'literature_2'
             },
             {
                 id: 'literature_2',
                 title: 'الأدب في العصر الجاهلي',
                 duration: '35 دقيقة',
-                desc: 'خصائص الشعر والنثر في العصر الجاهلي.'
+                desc: 'خصائص الشعر والنثر في العصر الجاهلي.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'تميز الشعر الجاهلي بصدق العاطفة وروعة التصوير.' }],
+                exercises: [],
+                prevLessonId: 'literature_1',
+                nextLessonId: 'literature_3'
             },
             {
                 id: 'literature_3',
                 title: 'الأدب في صدر الإسلام',
                 duration: '30 دقيقة',
-                desc: 'أثر الإسلام في الشعر والنثر العربي.'
+                desc: 'أثر الإسلام في الشعر والنثر العربي.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'تأثر الأدب بمعاني القرآن الكريم والسنة الشريفة.' }],
+                exercises: [],
+                prevLessonId: 'literature_2',
+                nextLessonId: 'literature_4'
             },
             {
                 id: 'literature_4',
                 title: 'الأدب الأموي',
                 duration: '35 دقيقة',
-                desc: 'الشعر السياسي والغزل والنقائض.'
+                desc: 'الشعر السياسي والغزل والنقائض.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'ازدهر الشعر السياسي وتطورت فنون النقائض.' }],
+                exercises: [],
+                prevLessonId: 'literature_3',
+                nextLessonId: null
             }
         ],
 
@@ -675,25 +858,45 @@ const AppData = {
                 id: 'texts_1',
                 title: 'كيف نقرأ النص الأدبي؟',
                 duration: '25 دقيقة',
-                desc: 'خطوات التعامل مع النص الأدبي واستخراج أفكاره.'
+                desc: 'خطوات التعامل مع النص الأدبي واستخراج أفكاره.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'قراءة النص بعمق تفتح آفاق الفهم.' }],
+                exercises: [],
+                prevLessonId: null,
+                nextLessonId: 'texts_2'
             },
             {
                 id: 'texts_2',
                 title: 'الفكرة العامة والأفكار الجزئية',
                 duration: '30 دقيقة',
-                desc: 'كيفية تحديد الفكرة العامة والأفكار الرئيسة.'
+                desc: 'كيفية تحديد الفكرة العامة والأفكار الرئيسة.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'كل نص يدور حول فكرة رئيسة وأفكار مساندة.' }],
+                exercises: [],
+                prevLessonId: 'texts_1',
+                nextLessonId: 'texts_3'
             },
             {
                 id: 'texts_3',
                 title: 'العاطفة في النص',
                 duration: '25 دقيقة',
-                desc: 'اكتشاف العاطفة ووسائل التعبير عنها.'
+                desc: 'اكتشاف العاطفة ووسائل التعبير عنها.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'العاطفة هي الإحساس النابض في ثنايا الأبيات.' }],
+                exercises: [],
+                prevLessonId: 'texts_2',
+                nextLessonId: 'texts_4'
             },
             {
                 id: 'texts_4',
                 title: 'الصور الجمالية',
                 duration: '35 دقيقة',
-                desc: 'تحليل الصور الجمالية والتعبيرات الفنية.'
+                desc: 'تحليل الصور الجمالية والتعبيرات الفنية.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'الصور الخيالية تضفي على النص جمالاً وحيوية.' }],
+                exercises: [],
+                prevLessonId: 'texts_3',
+                nextLessonId: null
             }
         ],
 
@@ -702,19 +905,34 @@ const AppData = {
                 id: 'reading_1',
                 title: 'مهارات القراءة الواعية',
                 duration: '25 دقيقة',
-                desc: 'كيف نقرأ النص بفهم وتركيز.'
+                desc: 'كيف نقرأ النص بفهم وتركيز.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'القراءة الواعية تبدأ بالتأمل والاستيعاب.' }],
+                exercises: [],
+                prevLessonId: null,
+                nextLessonId: 'reading_2'
             },
             {
                 id: 'reading_2',
                 title: 'استخراج المعلومات',
                 duration: '30 دقيقة',
-                desc: 'تحديد المعلومات الصريحة والضمنية في النص.'
+                desc: 'تحديد المعلومات الصريحة والضمنية في النص.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'المعلومات الصريحة تتضح بقرائن الألفاظ.' }],
+                exercises: [],
+                prevLessonId: 'reading_1',
+                nextLessonId: 'reading_3'
             },
             {
                 id: 'reading_3',
                 title: 'الفهم والاستنتاج',
                 duration: '30 دقيقة',
-                desc: 'الانتقال من القراءة إلى الاستنتاج والتحليل.'
+                desc: 'الانتقال من القراءة إلى الاستنتاج والتحليل.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'الاستنتاج ثمرة الفهم العميق للنصوص.' }],
+                exercises: [],
+                prevLessonId: 'reading_2',
+                nextLessonId: null
             }
         ]
     }
@@ -1623,7 +1841,10 @@ const PlatformApp = {
 
             <div class="space-y-4">
 
-                ${displayedLessons.map((lesson, index) => `
+                ${displayedLessons.map((lesson, index) => {
+                    const isCompleted = PlatformApp.isLessonCompleted(subject.id, lesson.id);
+
+                    return `
 
                     <div class="glass hover-card rounded-3xl p-5 sm:p-6">
 
@@ -1645,6 +1866,12 @@ const PlatformApp = {
                                         <i class="fa-regular fa-clock ml-1"></i>
                                         ${lesson.duration}
                                     </span>
+
+                                    ${isCompleted ? `
+                                        <span class="text-xs px-3 py-1 rounded-full bg-teal-100 dark:bg-teal-900/30 text-tier-accent font-bold">
+                                            <i class="fa-solid fa-check ml-1"></i> مكتمل
+                                        </span>
+                                    ` : ''}
 
                                 </div>
 
@@ -1674,7 +1901,7 @@ const PlatformApp = {
 
                     </div>
 
-                `).join('')}
+                `;}).join('')}
 
             </div>
 
@@ -1716,8 +1943,15 @@ const PlatformApp = {
                 id: 'default',
                 title: 'الدرس',
                 duration: '30 دقيقة',
-                desc: 'سيتم إضافة محتوى هذا الدرس قريبًا.'
+                desc: 'سيتم إضافة محتوى هذا الدرس قريبًا.',
+                videoPlaceholder: 'فيديو الشرح (قريبًا)',
+                contentSections: [{ type: 'intro', text: 'محتوى تجريبي للدرس.' }],
+                exercises: [],
+                prevLessonId: null,
+                nextLessonId: null
             };
+
+        const isCompleted = this.isLessonCompleted(subject.id, lesson.id);
 
         return `
 
@@ -1732,24 +1966,29 @@ const PlatformApp = {
             ])}
 
 
-            <div class="glass rounded-[2rem] overflow-hidden">
+            <div class="glass rounded-[2rem] overflow-hidden mb-8">
 
                 <div class="bg-gradient-to-br from-tier-accent to-tier-skyAccent p-8 sm:p-12 text-white">
 
-                    <div class="flex items-center gap-3 text-white/80 text-sm mb-5">
+                    <div class="flex items-center justify-between flex-wrap gap-4 mb-5">
+                        <div class="flex items-center gap-3 text-white/80 text-sm">
+                            <i class="fa-solid ${subject.icon}"></i>
+                            <span>${subject.title}</span>
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                            <span>الدرس</span>
+                        </div>
 
-                        <i class="fa-solid ${subject.icon}"></i>
-
-                        <span>
-                            ${subject.title}
-                        </span>
-
-                        <i class="fa-solid fa-chevron-left text-xs"></i>
-
-                        <span>
-                            الدرس
-                        </span>
-
+                        <div id="lesson-status-badge">
+                            ${isCompleted ? `
+                                <span class="px-4 py-1.5 rounded-full bg-white/20 text-white text-xs font-bold backdrop-blur-md">
+                                    <i class="fa-solid fa-check ml-1"></i> مكتمل
+                                </span>
+                            ` : `
+                                <span class="px-4 py-1.5 rounded-full bg-black/20 text-white text-xs font-bold backdrop-blur-md">
+                                    قيد الدراسة
+                                </span>
+                            `}
+                        </div>
                     </div>
 
                     <h1 class="text-3xl sm:text-5xl font-bold">
@@ -1763,82 +2002,148 @@ const PlatformApp = {
                 </div>
 
 
-                <div class="p-6 sm:p-10">
+                <div class="p-6 sm:p-10 space-y-8">
 
-                    <div class="grid sm:grid-cols-2 gap-4 mb-8">
+                    <div class="grid sm:grid-cols-2 gap-4">
 
                         <div class="glass rounded-2xl p-5">
-
                             <div class="text-sm text-slate-500 dark:text-slate-400">
                                 الصف
                             </div>
-
                             <div class="font-bold text-lg mt-1">
                                 ${activeGrade.title}
                             </div>
-
                         </div>
 
                         <div class="glass rounded-2xl p-5">
-
                             <div class="text-sm text-slate-500 dark:text-slate-400">
                                 مدة الدرس
                             </div>
-
                             <div class="font-bold text-lg mt-1">
                                 ${lesson.duration}
                             </div>
-
                         </div>
 
                     </div>
 
 
-                    <div class="rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 p-8 sm:p-12 text-center">
-
-                        <div class="w-20 h-20 rounded-3xl bg-teal-50 dark:bg-teal-900/20 text-tier-accent flex items-center justify-center mx-auto mb-6">
-
-                            <i class="fa-solid fa-book-open text-3xl"></i>
-
+                    <!-- Video Placeholder Section -->
+                    <div class="glass rounded-3xl p-6 sm:p-8 text-center border border-white/40 dark:border-white/10">
+                        <div class="w-16 h-16 rounded-2xl bg-teal-50 dark:bg-teal-900/20 text-tier-accent flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-video text-2xl"></i>
                         </div>
+                        <h3 class="text-lg font-bold mb-2">فيديو الشرح المرئي</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+                            ${lesson.videoPlaceholder || 'فيديو الشرح سيكون متاحًا هنا قريبًا.'}
+                        </p>
+                        <button
+                            onclick="PlatformApp.showToast('الفيديو التعليمي قيد الإعداد وسيتم إضافته قريبًا')"
+                            class="px-5 py-2.5 rounded-xl bg-tier-accent text-white hover:bg-tier-accentHover transition text-sm font-bold">
+                            <i class="fa-solid fa-play ml-2"></i> تشغيل الفيديو
+                        </button>
+                    </div>
 
-                        <h2 class="text-2xl font-bold">
-                            محتوى الدرس
+
+                    <!-- Structured Content Sections -->
+                    <div class="space-y-6">
+                        <h2 class="text-2xl font-bold border-r-4 border-tier-accent pr-4">
+                            شرح الدرس
                         </h2>
 
-                        <p class="mt-4 text-slate-500 dark:text-slate-400 leading-8 max-w-2xl mx-auto">
-                            هذه هي صفحة الدرس الفعلية.
-                            في الخطوة القادمة يمكننا إضافة شرح الدرس،
-                            الفيديو، الأمثلة، التدريبات، والأسئلة التفاعلية
-                            داخل هذه الصفحة.
-                        </p>
-
-                        <div class="mt-8 flex flex-wrap justify-center gap-3">
-
-                            <button
-                                onclick="PlatformApp.showToast('سيتم إضافة الفيديو التعليمي في المرحلة القادمة')"
-                                class="px-6 py-3 rounded-xl bg-tier-accent text-white hover:bg-tier-accentHover transition">
-
-                                <i class="fa-solid fa-play ml-2"></i>
-                                تشغيل الفيديو
-
-                            </button>
-
-                            <button
-                                onclick="PlatformApp.showToast('سيتم إضافة التدريبات التفاعلية في المرحلة القادمة')"
-                                class="px-6 py-3 rounded-xl glass hover:text-tier-accent transition">
-
-                                <i class="fa-solid fa-pen-to-square ml-2"></i>
-                                تدريبات الدرس
-
-                            </button>
-
-                        </div>
-
+                        ${(lesson.contentSections || []).map(section => {
+                            if (section.type === 'intro') {
+                                return `
+                                    <div class="glass rounded-2xl p-6 leading-8 text-slate-700 dark:text-slate-300">
+                                        ${section.text}
+                                    </div>
+                                `;
+                            } else if (section.type === 'rule') {
+                                return `
+                                    <div class="rounded-2xl p-6 bg-teal-50/80 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-800/50">
+                                        <div class="font-bold text-tier-accent text-lg mb-2 flex items-center gap-2">
+                                            <i class="fa-solid fa-bookmark"></i> ${section.title}
+                                        </div>
+                                        <div class="text-slate-700 dark:text-slate-200 leading-8">
+                                            ${section.text}
+                                        </div>
+                                    </div>
+                                `;
+                            } else if (section.type === 'details') {
+                                return `
+                                    <div class="glass rounded-2xl p-6 space-y-3">
+                                        <div class="font-bold text-lg mb-2">توضيح العناصر:</div>
+                                        <ul class="space-y-3 text-slate-700 dark:text-slate-300 leading-7">
+                                            ${section.items.map(item => `<li class="flex items-start gap-3"><i class="fa-solid fa-check text-tier-accent mt-1.5 shrink-0"></i><span>${item}</span></li>`).join('')}
+                                        </ul>
+                                    </div>
+                                `;
+                            } else if (section.type === 'examples') {
+                                return `
+                                    <div class="glass rounded-2xl p-6 bg-sky-50/50 dark:bg-sky-950/20 border border-sky-100 dark:border-sky-900/30">
+                                        <div class="font-bold text-tier-skyAccent text-lg mb-3 flex items-center gap-2">
+                                            <i class="fa-solid fa-lightbulb"></i> ${section.title}
+                                        </div>
+                                        <ul class="space-y-3 text-slate-700 dark:text-slate-300 leading-8">
+                                            ${section.items.map(ex => `<li class="p-3 rounded-xl glass bg-white/40 dark:bg-slate-900/40">${ex}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                `;
+                            }
+                            return '';
+                        }).join('')}
                     </div>
 
 
-                    <div class="mt-8 flex flex-col sm:flex-row justify-between gap-3">
+                    <!-- Interactive Exercises Section -->
+                    ${lesson.exercises && lesson.exercises.length > 0 ? `
+                        <div class="pt-6 border-t border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-6">
+                                <div>
+                                    <h2 class="text-2xl font-bold flex items-center gap-2">
+                                        <i class="fa-solid fa-pen-to-square text-tier-accent"></i> تدريبات تفاعلية
+                                    </h2>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                                        اختبر فهمك للدرس فوراً مع التصحيح الفوري
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-6" id="exercises-container">
+                                ${lesson.exercises.map((ex, exIndex) => `
+                                    <div class="glass rounded-3xl p-6 sm:p-8 exercise-card" data-ex-id="${ex.id}" data-correct="${ex.correctIndex}">
+                                        <div class="font-bold text-lg mb-4">
+                                            السؤال ${exIndex + 1}: ${ex.question}
+                                        </div>
+                                        <div class="space-y-3 mb-4">
+                                            ${ex.options.map((opt, optIndex) => `
+                                                <button
+                                                    onclick="PlatformApp.checkAnswer(this, ${exIndex}, ${optIndex}, ${ex.correctIndex})"
+                                                    class="w-full text-right p-4 rounded-2xl glass hover:bg-teal-50 dark:hover:bg-teal-900/20 transition flex items-center justify-between option-btn border border-white/50 dark:border-white/10">
+                                                    <span>${opt}</span>
+                                                    <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-600 flex items-center justify-center text-xs opt-indicator"></span>
+                                                </button>
+                                            `).join('')}
+                                        </div>
+                                        <div class="feedback-box hidden mt-4 p-4 rounded-2xl text-sm leading-7"></div>
+                                    </div>
+                                `).join('')}
+                            </div>
+
+                            <div id="quiz-result-banner" class="hidden mt-6 p-6 rounded-2xl text-center glass border border-teal-200 dark:border-teal-800">
+                                <h3 class="text-xl font-bold text-tier-accent mb-2">نتيجة التدريب</h3>
+                                <p id="quiz-result-text" class="text-lg font-bold mb-4"></p>
+                                <button
+                                    onclick="PlatformApp.resetExercises()"
+                                    class="px-5 py-2.5 rounded-xl bg-tier-accent text-white text-sm font-bold hover:bg-tier-accentHover transition">
+                                    <i class="fa-solid fa-rotate-right ml-1"></i> إعادة المحاولة
+                                </button>
+                            </div>
+                        </div>
+                    ` : ''}
+
+
+                    <!-- Bottom Navigation Buttons -->
+                    <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
 
                         <button
                             onclick="PlatformApp.navigate('subject', {
@@ -1847,25 +2152,42 @@ const PlatformApp = {
                                 grade: '${activeGrade.id}',
                                 subject: '${subject.id}'
                             })"
-                            class="px-5 py-3 rounded-xl glass hover:text-tier-accent transition">
-
-                            <i class="fa-solid fa-arrow-right ml-2"></i>
-                            العودة إلى دروس المادة
-
+                            class="w-full sm:w-auto px-6 py-3 rounded-xl glass hover:text-tier-accent transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-list-ul"></i>
+                            العودة إلى قائمة دروس المادة
                         </button>
 
-                        <button
-                            onclick="PlatformApp.navigate('subjects', {
-                                section: '${section.id}',
-                                stage: '${activeStage.id}',
-                                grade: '${activeGrade.id}'
-                            })"
-                            class="px-5 py-3 rounded-xl glass hover:text-tier-accent transition">
+                        <div class="flex items-center gap-3 w-full sm:w-auto">
+                            ${lesson.prevLessonId ? `
+                                <button
+                                    onclick="PlatformApp.navigate('lesson', {
+                                        section: '${section.id}',
+                                        stage: '${activeStage.id}',
+                                        grade: '${activeGrade.id}',
+                                        subject: '${subject.id}',
+                                        lesson: '${lesson.prevLessonId}'
+                                    })"
+                                    class="flex-1 sm:flex-initial px-5 py-3 rounded-xl glass hover:text-tier-accent transition flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                    الدرس السابق
+                                </button>
+                            ` : ''}
 
-                            جميع المواد
-                            <i class="fa-solid fa-arrow-left mr-2"></i>
-
-                        </button>
+                            ${lesson.nextLessonId ? `
+                                <button
+                                    onclick="PlatformApp.navigate('lesson', {
+                                        section: '${section.id}',
+                                        stage: '${activeStage.id}',
+                                        grade: '${activeGrade.id}',
+                                        subject: '${subject.id}',
+                                        lesson: '${lesson.nextLessonId}'
+                                    })"
+                                    class="flex-1 sm:flex-initial px-5 py-3 rounded-xl bg-tier-accent text-white hover:bg-tier-accentHover transition flex items-center justify-center gap-2">
+                                    الدرس التالي
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </button>
+                            ` : ''}
+                        </div>
 
                     </div>
 
@@ -1875,6 +2197,103 @@ const PlatformApp = {
 
         </section>
         `;
+    },
+
+
+    checkAnswer(btn, exerciseIndex, selectedOptIndex, correctOptIndex) {
+        const card = btn.closest('.exercise-card');
+        const buttons = card.querySelectorAll('.option-btn');
+        const feedbackBox = card.querySelector('.feedback-box');
+
+        buttons.forEach((b, idx) => {
+            b.disabled = true;
+            b.classList.add('opacity-80', 'cursor-not-allowed');
+            if (idx === correctOptIndex) {
+                b.classList.add('bg-teal-100', 'dark:bg-teal-900/40', 'border-teal-500');
+                b.querySelector('.opt-indicator').innerHTML = '<i class="fa-solid fa-check text-tier-accent"></i>';
+            } else if (idx === selectedOptIndex && selectedOptIndex !== correctOptIndex) {
+                b.classList.add('bg-rose-100', 'dark:bg-rose-900/40', 'border-rose-500');
+                b.querySelector('.opt-indicator').innerHTML = '<i class="fa-solid fa-xmark text-rose-500"></i>';
+            }
+        });
+
+        feedbackBox.classList.remove('hidden');
+        if (selectedOptIndex === correctOptIndex) {
+            feedbackBox.className = 'feedback-box mt-4 p-4 rounded-2xl text-sm leading-7 bg-teal-50 dark:bg-teal-950/30 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800';
+            feedbackBox.innerHTML = '<i class="fa-solid fa-circle-check ml-1"></i> إجابة صحيحة! أحسنت.';
+            card.setAttribute('data-answered', 'correct');
+        } else {
+            feedbackBox.className = 'feedback-box mt-4 p-4 rounded-2xl text-sm leading-7 bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800';
+            feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark ml-1"></i> إجابة غير صائبة. الإجابة الصحيحة هي الخيار المحدد بالأخضر.`;
+            card.setAttribute('data-answered', 'incorrect');
+        }
+
+        this.checkAllExercisesCompleted();
+    },
+
+    checkAllExercisesCompleted() {
+        const cards = document.querySelectorAll('.exercise-card');
+        if (cards.length === 0) return;
+
+        let answeredCount = 0;
+        let correctCount = 0;
+
+        cards.forEach(card => {
+            const status = card.getAttribute('data-answered');
+            if (status) {
+                answeredCount++;
+                if (status === 'correct') {
+                    correctCount++;
+                }
+            }
+        });
+
+        if (answeredCount === cards.length) {
+            const resultBanner = document.getElementById('quiz-result-banner');
+            const resultText = document.getElementById('quiz-result-text');
+            if (resultBanner && resultText) {
+                resultBanner.classList.remove('hidden');
+                resultText.innerHTML = `لقد أجبت بشكل صحيح على <strong>${correctCount}</strong> من أصل <strong>${cards.length}</strong> أسئلة.`;
+
+                if (correctCount >= Math.ceil(cards.length / 2)) {
+                    this.markCurrentLessonCompleted();
+                }
+            }
+        }
+    },
+
+    resetExercises() {
+        this.render();
+    },
+
+    markCurrentLessonCompleted() {
+        const subjectId = this.state.selectedSubjectId;
+        const lessonId = this.state.selectedLessonId;
+        if (!subjectId || !lessonId) return;
+
+        let progressData = JSON.parse(localStorage.getItem('arabic_platform_progress') || '{}');
+        if (!progressData[subjectId]) {
+            progressData[subjectId] = [];
+        }
+        if (!progressData[subjectId].includes(lessonId)) {
+            progressData[subjectId].push(lessonId);
+            localStorage.setItem('arabic_platform_progress', JSON.stringify(progressData));
+
+            const badgeContainer = document.getElementById('lesson-status-badge');
+            if (badgeContainer) {
+                badgeContainer.innerHTML = `
+                    <span class="px-4 py-1.5 rounded-full bg-white/20 text-white text-xs font-bold backdrop-blur-md">
+                        <i class="fa-solid fa-check ml-1"></i> مكتمل
+                    </span>
+                `;
+            }
+            this.showToast('أحسنت! تم حفظ إنجازك لهذا الدرس.');
+        }
+    },
+
+    isLessonCompleted(subjectId, lessonId) {
+        let progressData = JSON.parse(localStorage.getItem('arabic_platform_progress') || '{}');
+        return progressData[subjectId] && progressData[subjectId].includes(lessonId);
     },
 
 
@@ -2040,7 +2459,6 @@ document.addEventListener('DOMContentLoaded', () => {
     PlatformApp.init();
 
 });
-
 
 </script>
 
